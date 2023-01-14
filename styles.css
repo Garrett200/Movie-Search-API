@@ -11,12 +11,179 @@ html {
     scroll-behavior: smooth;
 }
 
-ul {
+li {
+    list-style-type: none;
+}
+
+a {
+    font-size: 18px;
     text-decoration: none;
+}
+
+h2 {
+    font-weight: 900;
+    font-size: 32px;
+    color: #4aa584;
+    padding-left: 8px;
+}
+
+.click {
+    cursor: pointer;
+}
+
+.green {
+    color: #4aa584;
 }
 
 .row {
     max-width: 1200px;
     width: 100%;
+    margin: 0 auto;
 }
 
+
+/*
+
+    NAV
+
+*/
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 48px;
+    height: 100px;
+    letter-spacing: 0.5px;
+}
+
+.nav__logo {
+    height: 44px;
+    width: 44px;
+    filter: invert(0.1);
+}
+
+.nav__logo--wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.nav__link--list {
+    display: flex;
+    align-items: center;
+}
+
+.nav__link {
+    margin: 0 24px;
+}
+
+.nav__link:last-child {
+    margin: 0 0 0 44px;
+}
+
+.nav__link--anchor {
+    font-size: 18px;
+    color: #242424;
+    font-weight: 600;
+}
+
+.link__hover-effect {
+    position: relative;
+}
+
+.link__hover-effect--black:after {
+    background-color: #242424;
+}
+
+.link__hover-effect:hover:after {
+    left: 0;
+    width: 100%;
+}
+
+.link__hover-effect:after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    height: 3px;
+    right: 0;
+    width: 0;
+    transition: all 300ms ease;
+}
+
+.nav__link--btn {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 14px 44px;
+    border-radius: 999px;
+    border: none;
+    color: #fff;
+    background-color: #4aa584;
+    box-shadow: 6px 6px 18px 0 rgb(0, 0, 0, 0.3);
+    transition: all 300ms ease;
+}
+
+.btn__hover-effect--green:hover {
+    background-color: #2e6853;
+}
+
+/*
+
+    HEADER
+
+*/
+
+.header {
+    padding: 24px 96px 0 96px;
+}
+
+.header__content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.title {
+    font-size: 48px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.sub__title {
+    margin-top: 32px;
+    font-size: 28px;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+.header__search--wrapper {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.header__search {
+    margin-right: 22px;
+    padding: 20px 36px 20px 24px;
+    width: 560px;
+    font-size: 26px;
+    font-weight: 400;
+    border-radius: 24px;
+    text-align: left;
+    border: solid 1px #242424;
+}
+
+.search-svg {
+    height: 30px;
+    width: 30px;
+    filter: invert(1);
+}
+
+.search-btn {
+    background-color: #4aa584;
+    padding: 20px 66px;
+    border: none;
+    border-radius: 24px;
+    box-shadow: 6px 6px 18px 0 rgb(0, 0, 0, 0.3);
+    transition: all 300ms ease;
+}
