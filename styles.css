@@ -60,7 +60,7 @@ nav {
 .nav__logo {
     height: 44px;
     width: 44px;
-    filter: invert(0.9);
+    filter: invert(100%);
 }
 
 .nav__logo--wrapper {
@@ -83,7 +83,7 @@ nav {
 
 .nav__link--anchor {
     font-size: 18px;
-    color: #000000;
+    color: #fff;
     font-weight: 600;
 }
 
@@ -92,7 +92,7 @@ nav {
 }
 
 .link__hover-effect--black:after {
-    background-color: #000000;
+    background-color: #fff;
 }
 
 .link__hover-effect:hover:after {
@@ -174,7 +174,7 @@ nav {
 .magnifying-glass {
     height: 40px;
     width: 40px;
-    filter: invert(1);
+    filter: invert(100%);
 }
 
 .search-btn {
