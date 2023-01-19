@@ -25,6 +25,7 @@ async function renderMovies() {
 
 
 
+
 function movieHTML() {
     return `<div class="movie">
                 <img class="movie__img" src="" alt="">
@@ -43,6 +44,9 @@ function getUserInput(event) {
 
 }
 getUserInput(event);
+
+const source = document.querySelector(".header__search")
+source.addEventListener('input', renderMovies)
 
 
 
