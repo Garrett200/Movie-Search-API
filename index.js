@@ -1,38 +1,36 @@
 // Data Requests http://www.omdbapi.com/?apikey=[yourkey]&
 // IMG Reqests http://img.omdbapi.com/?apikey=[yourkey]&
 // API Key 373b4567
+
 const moviesWrapper = document.querySelector(".movies--wrapper");
 
 async function renderMovies(filter) {
     const moviesFetch = await fetch(`http://www.omdbapi.com/?apikey=373b4567&s=${getUserInput(event)}`);
-    const moviesData = await moviesFetch.json();
+    let moviesData = await moviesFetch.json();
 
     if (filter === 'OLD_TO_NEW') {
-        moviesData.Search.sort((a, b) => a.Year.toFixed(4) - b.Year.toFixed(4))
+        let sortedByTime = moviesData.Search.map(movie => movie.Year.substring(0, 4))
+        sortedByTime.sort((a, b) => a.Year - b.Year)
         console.log('old to new.')
+        console.log(moviesData.Search.obj.Year)
     }
     if (filter === 'NEW_TO_OLD') {
-        moviesData.Search.sort((a, b) => b.Year.toFixed(4) - a.Year.toFixed(4))
+        moviesData.Search.sort((a, b) => b.Year - a.Year)
         console.log('new to old.')
     }
-
+    console.log(moviesData.Search)
     let movieInnerHTML = moviesData.Search.map((movie) => movieHTML(movie)).slice(0, 9).join('');
 
     if (filter === 'TYPE_MOVIE') {
-        let sortToMovie = moviesData.Search.filter(movie => movie.Type !== 'series')
+        let sortToMovie = moviesData.Search.filter(movie => movie.Type === 'movie')
         movieInnerHTML = sortToMovie.map((movie) => movieHTML(movie)).slice(0, 9).join('')
     }
     if (filter === 'TYPE_SERIES') {
-        let sortToMovie = moviesData.Search.filter(movie => movie.Type !== 'movie')
+        let sortToMovie = moviesData.Search.filter(movie => movie.Type === 'series')
         movieInnerHTML = sortToMovie.map((movie) => movieHTML(movie)).slice(0, 9).join('')
     }
-    console.log(moviesData.Search[6].Year.toFixed(4))
 
     moviesWrapper.innerHTML = movieInnerHTML;
-
-    console.log(moviesData.Search)
-
-
 }
 
 function movieHTML(movie) {
@@ -57,4 +55,8 @@ function filterChange(event) {
 const source = document.querySelector(".header__search")
 source.addEventListener('input', renderMovies)
 
-renderMovies();
+renderMovies().then(response => {
+    console.log(response);    
+}).catch(e => {
+    console.log(e)
+})
