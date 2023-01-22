@@ -7,29 +7,31 @@ async function renderMovies(filter) {
     const moviesFetch = await fetch(`http://www.omdbapi.com/?apikey=373b4567&s=${getUserInput(event)}`);
     const moviesData = await moviesFetch.json();
 
-    let movies = moviesData.Search
-
     if (filter === 'OLD_TO_NEW') {
-        moviesData.Search.sort((a, b) => a.Year - b.Year)
-        console.log('Sorting successful, old to new.')
+        moviesData.Search.sort((a, b) => a.Year.toFixed(4) - b.Year.toFixed(4))
+        console.log('old to new.')
     }
-    else if (filter === 'NEW_TO_OLD') {
-        moviesData.Search.sort((a, b) => b.Year - a.Year)
-        console.log('Sorting successful, new to old.')
-    }
-    else if (filter === 'TYPE') {
-        if (movies.Type === 'movie') {
-            return movies.filter(movie => movie.Type === 'movie')
-        }
-        else {
-            console.log('all movies')
-        }
+    if (filter === 'NEW_TO_OLD') {
+        moviesData.Search.sort((a, b) => b.Year.toFixed(4) - a.Year.toFixed(4))
+        console.log('new to old.')
     }
 
-    movieInnerHTML = moviesData.Search.map((movie) => movieHTML(movie)).join('');
+    let movieInnerHTML = moviesData.Search.map((movie) => movieHTML(movie)).slice(0, 9).join('');
+
+    if (filter === 'TYPE_MOVIE') {
+        let sortToMovie = moviesData.Search.filter(movie => movie.Type !== 'series')
+        movieInnerHTML = sortToMovie.map((movie) => movieHTML(movie)).slice(0, 9).join('')
+    }
+    if (filter === 'TYPE_SERIES') {
+        let sortToMovie = moviesData.Search.filter(movie => movie.Type !== 'movie')
+        movieInnerHTML = sortToMovie.map((movie) => movieHTML(movie)).slice(0, 9).join('')
+    }
+    console.log(moviesData.Search[6].Year.toFixed(4))
+
     moviesWrapper.innerHTML = movieInnerHTML;
-    sortedMovies = moviesData.Search.sort((a, b) => a.Year - b.Year)
-    console.log(sortedMovies)
+
+    console.log(moviesData.Search)
+
 
 }
 
