@@ -9,13 +9,20 @@ async function renderMovies(filter) {
     let moviesData = await moviesFetch.json();
 
     if (filter === 'OLD_TO_NEW') {
-        let sortedByTime = moviesData.Search.map(movie => movie.Year.substring(0, 4))
-        sortedByTime.sort((a, b) => a.Year - b.Year)
+        moviesData.Search.sort((a, b) => {
+            var yearA = a.Year.indexOf("-") == -1 ? parseInt(a.Year) : parseInt(a.Year.split("-")[0]);
+            var yearB = b.Year.indexOf("-") == -1 ? parseInt(b.Year) : parseInt(b.Year.split("-")[0]);
+            return yearA - yearB
+        })
         console.log('old to new.')
-        console.log(moviesData.Search.obj.Year)
     }
+
     if (filter === 'NEW_TO_OLD') {
-        moviesData.Search.sort((a, b) => b.Year - a.Year)
+        moviesData.Search.sort((a, b) => {
+            var yearA = a.Year.indexOf("-") == -1 ? parseInt(a.Year) : parseInt(a.Year.split("-")[0]);
+            var yearB = b.Year.indexOf("-") == -1 ? parseInt(b.Year) : parseInt(b.Year.split("-")[0]);
+            return yearB - yearA
+        })
         console.log('new to old.')
     }
     console.log(moviesData.Search)
