@@ -220,7 +220,7 @@ nav {
     padding: 16px 16px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .movie {
@@ -231,10 +231,27 @@ nav {
     margin-bottom: 26px;
     display: flex;
     flex-direction: column;
+    transition: all 300ms ease;
+}
+
+.movie:hover {
+    transform: scale(1.05);
 }
 
 .browse__title--wrapper {
     display: flex;
     justify-content: space-between;
     padding: 12px 24px;
+}
+
+.loading__visible {
+    display: flex;
+    z-index: 1;
+}
+
+.loading {
+    background
+    height: 100%;
+    width: 100%;
+    z-index: -1;
 }
