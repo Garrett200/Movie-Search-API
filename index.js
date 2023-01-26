@@ -56,11 +56,11 @@ async function renderMovies(filter) {
 }
 
 function movieHTML(movie) {
-    return `<div class="movie">
+    return `<div class="movie click">
                 <img class="movie__img" src="${movie.Poster}" alt="">
-                <h4 class="movie__title">${movie.Title}</h4>
-                <p class="movie__year">${movie.Year}</p>
-                <p class="media__type">${movie.Type}</p>
+                <h4 class="movie__info movie__title">${movie.Title}</h4>
+                <p class="movie__info movie__year">${movie.Year}</p>
+                <p class="movie__info media__type">${movie.Type}</p>
             </div>`
 
 }
