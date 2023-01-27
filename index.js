@@ -2,7 +2,7 @@
 // IMG Reqests http://img.omdbapi.com/?apikey=[yourkey]&
 // API Key 373b4567
 
-const moviesWrapper = document.querySelector(".movies--wrapper");
+const movieWrapper = document.querySelector(".movie__list");
 
 async function renderMovies(filter) {
     const moviesFetch = await fetch(`http://www.omdbapi.com/?apikey=373b4567&s=${getUserInput(event)}`);
@@ -52,16 +52,17 @@ async function renderMovies(filter) {
         console.log('only series')
     }
 
-    moviesWrapper.innerHTML = movieInnerHTML;
+    movieWrapper.innerHTML = movieInnerHTML;
 }
 
 function movieHTML(movie) {
-    return `<div class="movie click">
-                <img class="movie__img" src="${movie.Poster}" alt="">
-                <h4 class="movie__info movie__title">${movie.Title}</h4>
-                <p class="movie__info movie__year">${movie.Year}</p>
-                <p class="movie__info media__type">${movie.Type}</p>
-            </div>`
+    return `<img class="movie__img" src="${movie.Poster}">
+                <div class="movie__info">
+                    <h1 class="movie__title">${movie.Title}</h1>
+                    <h3 class="movie__date">${movie.Year}</h3>
+                    <h3 class="movie__type">${movie.Type}</h3>
+                    <button class="watch__btn">Rent or Buy</button>
+                </div>`
 
 }
 

@@ -217,7 +217,7 @@ nav {
     min-height: 650px;
 }
 
-.movies--wrapper {
+.movie__list {
     padding: 24px 16px;
     display: flex;
     flex-wrap: wrap;
