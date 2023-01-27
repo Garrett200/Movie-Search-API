@@ -39,16 +39,16 @@ async function renderMovies(filter) {
         console.log('new to old')
     }
 
-    let movieInnerHTML = moviesData.Search.map((movie) => movieHTML(movie)).slice(0, 9).join('');
+    let movieInnerHTML = moviesData.Search.map((movie) => movieHTML(movie)).join('');
 
     if (filter === 'TYPE_MOVIE') {
         let sortToMovie = moviesData.Search.filter(movie => movie.Type === 'movie')
-        movieInnerHTML = sortToMovie.map((movie) => movieHTML(movie)).slice(0, 9).join('')
+        movieInnerHTML = sortToMovie.map((movie) => movieHTML(movie)).join('')
         console.log('only movies')
     }
     if (filter === 'TYPE_SERIES') {
         let sortToMovie = moviesData.Search.filter(movie => movie.Type === 'series')
-        movieInnerHTML = sortToMovie.map((movie) => movieHTML(movie)).slice(0, 9).join('')
+        movieInnerHTML = sortToMovie.map((movie) => movieHTML(movie)).join('')
         console.log('only series')
     }
 
@@ -56,13 +56,20 @@ async function renderMovies(filter) {
 }
 
 function movieHTML(movie) {
-    return `<img class="movie__img" src="${movie.Poster}">
-                <div class="movie__info">
-                    <h1 class="movie__title">${movie.Title}</h1>
-                    <h3 class="movie__date">${movie.Year}</h3>
-                    <h3 class="movie__type">${movie.Type}</h3>
-                    <button class="watch__btn">Rent or Buy</button>
-                </div>`
+    return `<li class="movie">
+                <div class="movie__wrapper">
+                    <img class="movie__img" src="${movie.Poster}">
+                    <div class="movie__info">
+                        <div class="movie__info-wrapper">
+                            <h1 class="movie__title">${movie.Title} (${movie.Type})</h1>
+                            <h3 class="movie__date">${movie.Year}</h3>
+                        </div>
+                        <div class="watch__btn-wrapper">
+                            <button class="watch__btn click">Rent or Buy</button>
+                        </div>
+                    </div>
+                </div>
+            </li>`
 
 }
 
