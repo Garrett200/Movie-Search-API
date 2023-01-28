@@ -154,6 +154,7 @@ nav {
 
 .header__search--wrapper {
     margin: 40px 0 0 40px;
+    box-shadow: 6px 6px 18px 0 rgb(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -163,13 +164,21 @@ nav {
     padding: 14px 32px 14px 32px;
     width: 580px;
     font-size: 26px;
+    color: #e8eaed;
+    background-color: #2b2a33;
     border-radius: 55px;
     position: relative;
-    border: solid 1px #242424;
+    border: solid 1px #42414d;
+    transition: all 300ms ease;
+}
+
+.header__search:hover {
+    border: solid 1px #2b2a33;
+    background-color: #42414d;
 }
 
 .magnifying-glass {
-    filter: invert(53%) sepia(44%) saturate(416%) hue-rotate(107deg) brightness(98%) contrast(94%);
+    filter: invert(22%) sepia(5%) saturate(1490%) hue-rotate(206deg) brightness(95%) contrast(84%);
     transition: all 300ms ease;
     height: 40px;
     width: 40px;
@@ -180,16 +189,12 @@ nav {
 }
 
 .search-btn {
-    right:80px;
+    right:74px;
     position: relative;
     height: 40px;
     width: 40px;
     border: none;
     background-color: transparent;
-}
-
-.landing-img {
-    margin-top: 24px;
 }
 
 .movie-collage {
@@ -213,8 +218,31 @@ nav {
 }
 
 .decor {
-    background-color: #f7f7f7;
+    background-color: #2b2a33;
     min-height: 650px;
+}
+
+.browse__title--wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 24px;
+}
+
+.browse__title {
+    color: #e8eaed;
+}
+
+#filter {
+    font-weight: 600;
+    color: #e8eaed;
+    background-color: #2b2a33;
+    border: 1px solid #42414d;
+    border-radius: 12px;
+    padding-left: 14px;
+}
+
+#filter:hover {
+    border: 1px solid #2b2a33;
 }
 
 .movie__list {
@@ -242,7 +270,7 @@ nav {
 .movie__wrapper:before {
     content: "";
     position: absolute;
-    background-color: #1c1d25;
+    background-color: #2b2a33;
     top: 0;
     left: 0;
     height: 100%;
@@ -263,11 +291,12 @@ nav {
 }
 
 .movie:hover .movie__wrapper:before {
-    opacity: 0.7;
+    opacity: 0.6;
 }
 
 .movie:hover .movie__img {
     transform: scale(1.05);
+    filter: blur(3px);
 }
 
 .movie:hover .movie__info {
@@ -316,12 +345,6 @@ nav {
 .watch__btn:hover {
     background-color: #2c546e;
     color: rgb(245, 245, 245)
-}
-
-.browse__title--wrapper {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 24px;
 }
 
 .loading {
