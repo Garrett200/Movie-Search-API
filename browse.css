@@ -9,7 +9,7 @@
 
 html {
     scroll-behavior: smooth;
-    background-color: #2c2c2c;
+    background-color: #2b2a33;
     overflow-x: hidden;
 }
 
@@ -25,7 +25,6 @@ a {
 h2 {
     font-weight: 900;
     font-size: 32px;
-    color: #4aa584;
     padding-left: 8px;
 }
 
@@ -123,7 +122,7 @@ nav {
     transition: all 300ms ease;
 }
 
-.btn__hover-effect--green:hover {
+.btn__hover-effect--color:hover {
     background-color: #42414d;
     border: 1px solid #2b2a33;
     color: #ffffff;
@@ -177,8 +176,6 @@ nav {
     border: solid 1px #2b2a33;
     background-color: #42414d;
 }
-
-
 
 .magnifying-glass {
     filter: invert(98%) sepia(6%) saturate(494%) hue-rotate(177deg) brightness(96%) contrast(94%);

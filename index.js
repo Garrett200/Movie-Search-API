@@ -53,6 +53,8 @@ async function renderMovies(filter) {
     }
 
     movieWrapper.innerHTML = movieInnerHTML;
+
+
 }
 
 function movieHTML(movie) {
@@ -76,17 +78,33 @@ function movieHTML(movie) {
 function getUserInput() {
     let input = document.querySelector(".header__search").value;
     return input;
+
 }
 
-const source = document.querySelector(".header__search")
-source.addEventListener('input', renderMovies)
-
-function filterChange(event) {
-    return renderMovies(event.target.value)
-}
+const source = document.querySelector(".header__search");
+source.addEventListener('input', renderMovies);
 
 renderMovies().then(response => {
     console.log(response);    
 }).catch(e => {
     console.log(e)
 })
+
+let timeout;
+source.addEventListener("input", function() {
+    clearTimeout(timeout);
+    document.querySelector(".movie__list").style.display = 'none'
+    const animationWrapper = document.querySelector(".loading");
+    const animation = document.querySelector(".loading-animation")
+    animationWrapper.classList.add("loading__visible");
+    animation.classList.add("loading__visible")
+    timeout = setTimeout(function() {
+        animationWrapper.classList.remove("loading__visible");
+        animation.classList.remove("loading__visible");
+        document.querySelector(".movie__list").style.display = 'flex'
+    }, 500);
+  });
+
+function filterChange(event) {
+    return renderMovies(event.target.value);
+}
