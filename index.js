@@ -61,7 +61,7 @@ function movieHTML(movie) {
                     <img class="movie__img" src="${movie.Poster}">
                     <div class="movie__info">
                         <div class="movie__info-wrapper">
-                            <h1 class="movie__title">${movie.Title} (${movie.Type})</h1>
+                            <h1 class="movie__title">${movie.Title}</h1>
                             <h3 class="movie__date">${movie.Year}</h3>
                         </div>
                         <div class="watch__btn-wrapper">
