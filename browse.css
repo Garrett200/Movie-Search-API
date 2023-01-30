@@ -361,7 +361,7 @@ nav {
     background-color: #2e6853;
     width: calc(50%);
     height: 4px;
-    animation: left-to-right 2500ms infinite;
+    animation: left-to-right 1600ms infinite;
     display: none;
 }
 
