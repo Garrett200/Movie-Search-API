@@ -378,7 +378,25 @@ nav {
     }
 }
 
+/*
 
+    FOOTER
+
+*/
+
+#footer {
+    border-top: solid 1px #6c6e91;
+    background-color: #2b2a33;
+}
+.footer__logo {
+    height: 44px;
+    width: 44px;
+    filter: invert(100%);
+}
+
+.logo__wrapper {
+    display: flex;
+}
 /*
 
     SCREEN SIZES
