@@ -7,7 +7,8 @@ function getUserInput() {
     return document.querySelector(".header__search").value;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () { // Event listener added to wait until the page is loaded to run the script
+    // HTML Classes defined into constants ~
     const movieWrapper = document.querySelector(".movie__list");
     const input = document.getElementById("input");
     const movieWrappers = document.querySelectorAll(".movie__wrapper");
@@ -25,13 +26,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    let timer;
+    let timer; // Defining timer before use
 
-    try {
-        const userInput = getUserInput();
-        if (!userInput) return;
+    try { // If the page is loaded, try to run the script
+        const userInput = getUserInput(); // Redefining the user input constant
+        if (!userInput) return; // If there is no input from the user (false), return and try the script again
 
-        if (input) {
+        if (input) { // If input has been made (true) run this function
             input.addEventListener("input", debounce(function() {
                 movieWrappers.forEach(function (movieWrapper) {
                   if (input.value.length > 0) {
@@ -43,28 +44,23 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 500));
         }
 
+        async function renderMovies(filter) { // Aysnc function to await the movies API to render them in
+            clearTimeout(timer); // Stops the function until the timer has ran out
 
-        function getUserInput() {
-            return document.querySelector(".header__search").value;
-        }
-
-        async function renderMovies(filter) {
-            const animationWrapper = document.querySelector(".loading");
-            const animation = document.querySelector(".loading-animation");
-            clearTimeout(timer);
-            animationWrapper.classList.add("loading__visible");
-            animation.classList.add("loading__visible");
+            // Adds the loading__visible class to the loading animations while the movies are not visible
+            loading.classList.add("loading__visible"); 
+            loadingAnimation.classList.add("loading__visible");
 
             const userInput = getUserInput();
-            if (!userInput) return;
+            if (!userInput) return; // Checking once more for input otherwise stops the function
 
-            const moviesFetch = await fetch(`http://www.omdbapi.com/?apikey=373b4567&s=${userInput}`);
-            let moviesData = await moviesFetch.json();
-            if (!moviesData.Search) return;
+            const moviesFetch = await fetch(`http://www.omdbapi.com/?apikey=373b4567&s=${userInput}`); // Fetchs the the movies with the users input as the search
+            let moviesData = await moviesFetch.json(); // Convert it to json
+            if (!moviesData.Search) return; // If the array of movies hasnt been fetched yet, stop the function
 
-            let sortFunction;
+            let sortFunction; // Defining sort function for future use
             if (filter === 'ALPHABETICAL') {
-                sortFunction = (a, b) => a.Title.localeCompare(b.Title);
+                sortFunction = (a, b) => a.Title.localeCompare(b.Title); // Comparing the titles with localeCompare to alphabetize
             } else if (filter === 'OLD_TO_NEW') {
                 sortFunction = (a, b) => {
                     const yearA = parseYear(a.Year);
@@ -89,17 +85,17 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             timer = setTimeout(() => {
-                animationWrapper.classList.remove("loading__visible");
-                animation.classList.remove("loading__visible");
+                loading.classList.remove("loading__visible");
+                loadingAnimation.classList.remove("loading__visible");
                 movieWrapper.innerHTML = filteredMovies.map(movieHTML).join('');
             }, 500);
         }
 
-        function parseYear(year) {
+        function parseYear(year) { // Defining parseYear for use in the filter functions
             return year.indexOf("-") === -1 ? parseInt(year) : parseInt(year.split("-")[0]);
         }
 
-        function movieHTML(movie) {
+        function movieHTML(movie) { 
             return `<li class="movie">
                         <div class="movie__wrapper">
                             <img class="movie__img" src="${movie.Poster}">
@@ -116,10 +112,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     </li>`
         }
 
-        const source = document.querySelector(".header__search")
-        source.addEventListener('input', renderMovies);
+        const source = document.querySelector(".header__search") // Defining where the users input will be tracked
+        source.addEventListener('input', renderMovies); // Event listener to run the renderMovies function with every input
 
-    } catch (error) {
+    } catch (error) { // If trying to run the script does not go through, send an error
         console.error(error);
     }
 
