@@ -7,7 +7,7 @@ function getUserInput() {
     return document.querySelector(".header__search").value;
 }
 
-document.addEventListener("DOMContentLoaded", function () { // Event listener added to wait until the page is loaded to run the script
+document.addEventListener("input", function () { // Event listener added to wait until the page is loaded to run the script
     // HTML Classes defined into constants ~
     const movieWrapper = document.querySelector(".movie__list");
     const input = document.getElementById("input");
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () { // Event listener ad
                     movieWrapper.style.display = "none";
                   }
                 });
-            }, 500));
+            }, 1000));
         }
 
         async function renderMovies(filter) { // Aysnc function to await the movies API to render them in
@@ -92,7 +92,8 @@ document.addEventListener("DOMContentLoaded", function () { // Event listener ad
         }
 
         function parseYear(year) { // Defining parseYear for use in the filter functions
-            return year.indexOf("-") === -1 ? parseInt(year) : parseInt(year.split("-")[0]);
+            return year.indexOf("-") === -1 ? parseInt(year) : parseInt(year.split("-")[0]); /* IndexOf finds the first occurence of '-' in the year string and if true
+                                                                                              converts the year into a integer with parseInt and splits it at the '-' into two integers */ 
         }
 
         function movieHTML(movie) { 

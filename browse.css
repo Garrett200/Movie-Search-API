@@ -91,7 +91,7 @@ nav {
     position: relative;
 }
 
-.link__hover-effect--black:after {
+.link__hover-effect--white:after {
     background-color: #e8eaed;
 }
 
@@ -259,6 +259,8 @@ nav {
     max-height: 400px;
     max-width: 260px;
     width: 100%;
+    min-height: 400px;
+    min-width: 260px;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
@@ -387,16 +389,46 @@ nav {
 #footer {
     border-top: solid 1px #6c6e91;
     background-color: #2b2a33;
+    padding-top: 36px;
 }
+
+.footer__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .footer__logo {
-    height: 44px;
-    width: 44px;
+    height: 38px;
+    width: 38px;
     filter: invert(100%);
 }
 
 .logo__wrapper {
     display: flex;
+    margin-bottom: 12px;
 }
+
+.links__list {
+    display: flex;
+}
+
+.footer__link {
+    padding: 12px;
+}
+
+.link__item {
+    color: #e8eaed;
+    font-weight: 500;
+}
+
+.copyright {
+    color: #0e0e0f;
+    font-size: 14px;
+    padding-bottom: 12px;
+}
+
 /*
 
     SCREEN SIZES
