@@ -7,6 +7,11 @@ function getUserInput() {
     return document.querySelector(".header__search").value;
 }
 
+let userInput;
+function switchTabs() {
+    window.location.href = 'browse.html';
+}
+
 document.addEventListener("input", function () { // Event listener added to wait until the page is loaded to run the script
     // HTML Classes defined into constants ~
     const movieWrapper = document.querySelector(".movie__list");
@@ -16,8 +21,8 @@ document.addEventListener("input", function () { // Event listener added to wait
     const loadingAnimation = document.querySelector(".loading-animation");
     const loadingVisible = document.querySelector(".loading__visible");
 
-    const debounce = (func, delay) => {
-        let inDebounce;
+    const debounce = (func, delay) => { // Defining the debounce function
+        let inDebounce; 
         return function() {
           const context = this;
           const args = arguments;
@@ -33,15 +38,9 @@ document.addEventListener("input", function () { // Event listener added to wait
         if (!userInput) return; // If there is no input from the user (false), return and try the script again
 
         if (input) { // If input has been made (true) run this function
-            input.addEventListener("input", debounce(function() {
-                movieWrappers.forEach(function (movieWrapper) {
-                  if (input.value.length > 0) {
-                    movieWrapper.style.display = "";
-                  } else {
-                    movieWrapper.style.display = "none";
-                  }
-                });
-            }, 1000));
+            input.addEventListener("input", debounce(function() { // Debounce restricts the calling of the function too frequently
+                movieWrapper.style.display = 'none'
+            }, 100));
         }
 
         async function renderMovies(filter) { // Aysnc function to await the movies API to render them in
@@ -88,7 +87,7 @@ document.addEventListener("input", function () { // Event listener added to wait
                 loading.classList.remove("loading__visible");
                 loadingAnimation.classList.remove("loading__visible");
                 movieWrapper.innerHTML = filteredMovies.map(movieHTML).join('');
-            }, 500);
+            }, 800);
         }
 
         function parseYear(year) { // Defining parseYear for use in the filter functions
