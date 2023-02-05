@@ -7,7 +7,6 @@ function getUserInput() {
     return document.querySelector(".header__search").value;
 }
 
-let userInput;
 function switchTabs() {
     window.location.href = 'browse.html';
 }
@@ -19,7 +18,7 @@ document.addEventListener("input", function () { // Event listener added to wait
     const movieWrappers = document.querySelectorAll(".movie__wrapper");
     const loading = document.querySelector(".loading");
     const loadingAnimation = document.querySelector(".loading-animation");
-    const loadingVisible = document.querySelector(".loading__visible");
+    const spinner = document.querySelector(".spinner");
 
     const debounce = (func, delay) => { // Defining the debounce function
         let inDebounce; 
@@ -37,18 +36,14 @@ document.addEventListener("input", function () { // Event listener added to wait
         const userInput = getUserInput(); // Redefining the user input constant
         if (!userInput) return; // If there is no input from the user (false), return and try the script again
 
-        if (input) { // If input has been made (true) run this function
-            input.addEventListener("input", debounce(function() { // Debounce restricts the calling of the function too frequently
-                movieWrapper.style.display = 'none'
-            }, 100));
-        }
-
         async function renderMovies(filter) { // Aysnc function to await the movies API to render them in
             clearTimeout(timer); // Stops the function until the timer has ran out
 
             // Adds the loading__visible class to the loading animations while the movies are not visible
             loading.classList.add("loading__visible"); 
             loadingAnimation.classList.add("loading__visible");
+            spinner.style.display = 'flex'
+            movieWrapper.style.display = 'none'
 
             const userInput = getUserInput();
             if (!userInput) return; // Checking once more for input otherwise stops the function
@@ -86,8 +81,10 @@ document.addEventListener("input", function () { // Event listener added to wait
             timer = setTimeout(() => {
                 loading.classList.remove("loading__visible");
                 loadingAnimation.classList.remove("loading__visible");
+                spinner.style.display = 'none'
+                movieWrapper.style.display = 'flex'
                 movieWrapper.innerHTML = filteredMovies.map(movieHTML).join('');
-            }, 800);
+            }, 300);
         }
 
         function parseYear(year) { // Defining parseYear for use in the filter functions

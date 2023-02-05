@@ -220,6 +220,9 @@ nav {
 .decor {
     background-color: #2b2a33;
     min-height: 650px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .browse__title--wrapper {
@@ -369,6 +372,27 @@ nav {
 
 .loading__visible {
     display: flex;
+}
+
+.spinner {
+    height: 90px;
+    width: 90px;
+    position: absolute;
+    margin-top: 200px;
+    z-index: 3;
+    display: none;
+    filter: invert(22%) sepia(5%) saturate(1462%) hue-rotate(206deg) brightness(100%) contrast(88%);
+    animation: spin 600ms infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes left-to-right {
