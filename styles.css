@@ -211,3 +211,40 @@ nav {
 .landing-img {
     margin-top: 36px;
 }
+
+@media (min-width: 428px) {
+    
+    .header {
+        padding: 24px 24px 0 24px;
+    }
+    .title {
+        font-size: 28px;
+    }
+    .sub__title {
+        font-size: 22px;
+    }
+
+    .header__search--wrapper {
+        position: relative;
+    }
+    .header__search {
+        padding: 14px 80px 14px 20px;
+        width: 380px;
+        margin: 0;
+        border-radius: 999px;
+    }
+    .search-btn {
+        position: absolute;
+        right: 10px;
+        padding: 12px 30px 12px 30px;
+    }
+
+    .magnifying-glass {
+        height: 24px;
+        width: 24px;
+    }
+
+    .landing-img {
+        height: 300px;
+    }
+}
