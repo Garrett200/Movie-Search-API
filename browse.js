@@ -3,6 +3,14 @@
 // IMG Reqests http://img.omdbapi.com/?apikey=[yourkey]&
 // API Key 373b4567
 
+function openMenu (){
+    document.body.classList += " menu--open"
+}
+
+function closeMenu (){
+    document.body.classList.remove('menu--open')
+}
+
 function getUserInput() {
     return document.querySelector(".header__search").value;
 }

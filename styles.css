@@ -212,7 +212,15 @@ nav {
     margin-top: 36px;
 }
 
-@media (min-width: 375px) {
+
+
+.menu--open {
+    visibility: visible;
+}
+
+/*  PHONES */
+
+@media (max-width: 375px) {
 
     nav {
         display: none;
