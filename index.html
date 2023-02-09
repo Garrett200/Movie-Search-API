@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="styles.css">
     <script src="browse.js" defer></script>
     <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
@@ -20,47 +21,49 @@
                     <img src="assets/film-logo.png" class="nav__logo" alt="">
                     <h2 class="green">flicks</h2>
                 </figure>
-                <ul class="nav__link--list">
-                    <li class="nav__link">
-                        <a href="index.html" class="
+                <div class="nav__list--container">
+                    <ul class="nav__link--list">
+                        <li class="nav__link">
+                            <a href="index.html" class="
                                 nav__link--anchor
                                 link__hover-effect
                                 link__hover-effect--black
                             ">Home</a>
-                    </li>
-                    <li class="nav__link">
-                        <a href="browse.html" class="
+                        </li>
+                        <li class="nav__link">
+                            <a href="browse.html" class="
                                 nav__link--anchor
                                 link__hover-effect
                                 link__hover-effect--black
                             ">Find a Movie</a>
-                    </li>
-                    <li class="nav__link">
-                        <button class="
+                        </li>
+                        <li class="nav__link">
+                            <button class="
                                 nav__link--btn
                                 btn__hover-effect--color
                                 click
                             ">Contact</button>
-                    </li>
-                </ul>
-                <button class="menu__btn" onclick="openMenu()">
-                    <img src="assets/bars-solid.svg" class="menu__btn--image">
-                </button>
-                <div class="menu__backdrop">
-                    <button class="menu__btn--close" onclick="closeMenu()">
-                        <img src="assets/xmark-solid.svg" class="menu__btn--image">
-                    </button>
-                    <ul class="menu__list">
-                        <li class="menu__list--item">
-                            <a href="index.html"  class="menu__list--link" onclick="closeMenu()">Home</a>
-                        </li>
-                        <li class="menu__list--item">
-                            <a href="index.html" class="menu__list--link" onclick="closeMenu()">Browse</a>
-                        </li>
-                        <li class="menu__list--item">
-                            <a href="index.html" class="menu__list--link" onclick="closeMenu()">Contact</a>
                         </li>
                     </ul>
+                    <button class="menu__btn click" onclick="openMenu()">
+                        <img src="assets/bars-solid.svg" class="menu__btn--image">
+                    </button>
+                    <div class="menu__backdrop">
+                        <button class="menu__btn--close" onclick="closeMenu()">
+                            <img src="assets/xmark-solid.svg" class="menu__btn--image">
+                        </button>
+                        <ul class="menu__list">
+                            <li class="menu__list--item">
+                                <a href="index.html" class="menu__list--link" onclick="closeMenu()">Home</a>
+                            </li>
+                            <li class="menu__list--item">
+                                <a href="index.html" class="menu__list--link" onclick="closeMenu()">Browse</a>
+                            </li>
+                            <li class="menu__list--item">
+                                <a href="index.html" class="menu__list--link" onclick="closeMenu()">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
             <header class="header">
@@ -80,10 +83,11 @@
                             <img class="magnifying-glass" src="assets/magnifying-glass-solid.svg">
                         </button>
                     </div>
-                    <img class="landing-img" src="assets/landing-png.png"> 
+                    <img class="landing-img" src="assets/landing-png.png">
                 </div>
             </header>
         </div>
     </section>
 </body>
+
 </html>

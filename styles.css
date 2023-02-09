@@ -73,6 +73,12 @@ nav {
     align-items: center;
 }
 
+.nav__list--container {
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+}
+
 .nav__link {
     margin: 0 24px;
 }
@@ -212,18 +218,34 @@ nav {
     margin-top: 36px;
 }
 
+.menu__backdrop {
+    visibility: hidden;
+    width: 0px;
+}
 
+.menu__btn {
+    background: transparent;
+    border: none;
+    display: none;
+    filter: invert(23%) sepia(11%) saturate(695%) hue-rotate(206deg) brightness(93%) contrast(86%);
+    width: 0px;
+    transition: all 300ms ease;
+}
+
+.menu__btn:hover {
+    filter: invert(94%) sepia(28%) saturate(102%) hue-rotate(177deg) brightness(96%) contrast(94%);
+}
 
 .menu--open {
     visibility: visible;
 }
 
-/*  PHONES */
+/* SMALL PHONES */
 
-@media (max-width: 375px) {
+@media (max-width: 480px) {
 
-    nav {
-        display: none;
+    .nav__link--list {
+        visibility: hidden;
     }
     
     .header {
@@ -262,5 +284,15 @@ nav {
 
     .landing-img {
         height: 200px;
+    }
+
+    .menu__btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+    }
+
+    .nav__link--list {
+        width: 0px;
     }
 }
