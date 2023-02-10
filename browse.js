@@ -3,12 +3,20 @@
 // IMG Reqests http://img.omdbapi.com/?apikey=[yourkey]&
 // API Key 373b4567
 
-function openMenu (){
-    document.body.classList += " menu--open"
+const menu = document.querySelector(".menu__backdrop");
+
+function openMenu () {
+    menu.classList.remove("fade-out");
+    menu.classList.add("fade-in");
+    menu.style.display = 'flex';
 }
 
-function closeMenu (){
-    document.body.classList.remove('menu--open')
+function closeMenu() {
+    menu.classList.remove("fade-in");
+    menu.classList.add("fade-out");
+    timer = setTimeout(() => {
+        menu.style.display = 'none';
+    }, 300);
 }
 
 function getUserInput() {
@@ -27,16 +35,6 @@ document.addEventListener("input", function () { // Event listener added to wait
     const loading = document.querySelector(".loading");
     const loadingAnimation = document.querySelector(".loading-animation");
     const spinner = document.querySelector(".spinner");
-
-    const debounce = (func, delay) => { // Defining the debounce function
-        let inDebounce; 
-        return function() {
-          const context = this;
-          const args = arguments;
-          clearTimeout(inDebounce);
-          inDebounce = setTimeout(() => func.apply(context, args), delay);
-        }
-    };
 
     let timer; // Defining timer before use
 
@@ -125,126 +123,3 @@ document.addEventListener("input", function () { // Event listener added to wait
     }
 
 });
-/*
-window.onload = async function() {
-    const userInput = localStorage.getItem("userInput");
-    try {
-        const response = await fetch(`http://www.omdbapi.com/?apikey=373b4567&s=${userInput}`, { method: 'GET' });
-        const moviesData = await response.json();
-        if(response.ok) {
-            // use moviesData here
-        } else {
-            throw new Error(response.statusText);
-        }
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-const movieWrapper = document.querySelector(".movie__list");
-
-async function renderMovies(filter) {
-    const moviesFetch = await fetch(`http://www.omdbapi.com/?apikey=373b4567&s=${getUserInput(event)}`);
-    let moviesData = await moviesFetch.json();
-
-    if (filter === 'ALPHABETICAL') {
-        moviesData.Search.sort((a, b) => {
-            if (a.Title < b.Title) {
-                return -1;
-            }
-            if (a.Title > b.Title) {
-                return 1;
-            }
-            return 0;
-        })
-        console.log('alphabetical')
-    }
-
-    if (filter === 'OLD_TO_NEW') {
-        moviesData.Search.sort((a, b) => {
-            var yearA = a.Year.indexOf("-") == -1 ? parseInt(a.Year) : parseInt(a.Year.split("-")[0]);
-            var yearB = b.Year.indexOf("-") == -1 ? parseInt(b.Year) : parseInt(b.Year.split("-")[0]);
-            return yearA - yearB
-        })
-        console.log('old to new')
-    }
-
-    if (filter === 'NEW_TO_OLD') {
-        moviesData.Search.sort((a, b) => {
-            var yearA = a.Year.indexOf("-") == -1 ? parseInt(a.Year) : parseInt(a.Year.split("-")[0]);
-            var yearB = b.Year.indexOf("-") == -1 ? parseInt(b.Year) : parseInt(b.Year.split("-")[0]);
-            return yearB - yearA
-        })
-        console.log('new to old')
-    }
-
-    let movieInnerHTML = moviesData.Search.map((movie) => movieHTML(movie)).join('');
-
-    if (filter === 'TYPE_MOVIE') {
-        let sortToMovie = moviesData.Search.filter(movie => movie.Type === 'movie')
-        movieInnerHTML = sortToMovie.map((movie) => movieHTML(movie)).join('')
-        console.log('only movies')
-    }
-    if (filter === 'TYPE_SERIES') {
-        let sortToMovie = moviesData.Search.filter(movie => movie.Type === 'series')
-        movieInnerHTML = sortToMovie.map((movie) => movieHTML(movie)).join('')
-        console.log('only series')
-    }
-
-    movieWrapper.innerHTML = movieInnerHTML;
-
-
-}
-
-function movieHTML(movie) {
-    return `<li class="movie">
-                <div class="movie__wrapper">
-                    <img class="movie__img" src="${movie.Poster}">
-                    <div class="movie__info">
-                        <div class="movie__info-wrapper">
-                            <h1 class="movie__title">${movie.Title}</h1>
-                            <h3 class="movie__date">${movie.Year}</h3>
-                        </div>
-                        <div class="watch__btn-wrapper">
-                            <button class="watch__btn click">Rent or Buy</button>
-                        </div>
-                    </div>
-                </div>
-            </li>`
-
-}
-
-function getUserInput() {
-    let input = document.querySelector(".header__search").value;
-    return input;
-
-}
-
-const source = document.querySelector(".header__search");
-source.addEventListener('input', renderMovies);
-
-renderMovies().then(response => {
-    console.log(response);    
-}).catch(e => {
-    console.log(e)
-})
-
-let timeout;
-source.addEventListener("input", function() {
-    clearTimeout(timeout);
-    document.querySelector(".movie__list").style.display = 'none'
-    const animationWrapper = document.querySelector(".loading");
-    const animation = document.querySelector(".loading-animation")
-    animationWrapper.classList.add("loading__visible");
-    animation.classList.add("loading__visible")
-    timeout = setTimeout(function() {
-        animationWrapper.classList.remove("loading__visible");
-        animation.classList.remove("loading__visible");
-        document.querySelector(".movie__list").style.display = 'flex'
-    }, 500);
-  });
-
-function filterChange(event) {
-    return renderMovies(event.target.value);
-}
-*/
