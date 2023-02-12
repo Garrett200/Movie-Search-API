@@ -6,17 +6,20 @@
 const menu = document.querySelector(".menu__backdrop");
 
 function openMenu () {
-    menu.classList.remove("fade-out");
-    menu.classList.add("fade-in");
     menu.style.display = 'flex';
+    menu.classList.add("fade-in");
+    timer = setTimeout(() => {
+        menu.classList.remove("fade-in");
+    }, 280);
 }
 
 function closeMenu() {
-    menu.classList.remove("fade-in");
     menu.classList.add("fade-out");
     timer = setTimeout(() => {
+        menu.classList.remove("fade-out");
         menu.style.display = 'none';
-    }, 300);
+    }, 280);
+
 }
 
 function getUserInput() {
