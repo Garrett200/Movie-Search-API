@@ -10,7 +10,7 @@ function openMenu () {
     menu.classList.add("fade-in");
     timer = setTimeout(() => {
         menu.classList.remove("fade-in");
-    }, 280);
+    }, 300);
 }
 
 function closeMenu() {

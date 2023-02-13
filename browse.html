@@ -44,6 +44,24 @@
                             ">Contact</button>
                     </li>
                 </ul>
+                <button class="menu__btn click" onclick="openMenu()">
+                    <img src="assets/bars-solid.svg" class="menu__open--image">
+                </button>
+                <div class="menu__backdrop">
+                    <button class="menu__btn--close click" onclick="closeMenu()">
+                        <img src="assets/xmark-solid.svg" class="menu__close--image">
+                    </button>
+                    <ul class="menu__list">
+                        <li class="menu__list--item">
+                            <a href="index.html" class="menu__list--link" onclick="closeMenu()">Home</a>
+                        </li>
+                        <li class="menu__list--item">
+                            <a href="browse.html" class="menu__list--link" onclick="closeMenu()">Browse</a>
+                        </li>
+                        <li class="menu__list--item">
+                            <a href="index.html" class="menu__list--link" onclick="closeMenu()">Contact</a>
+                        </li>
+                    </ul>
             </nav>
             <header class="header">
                 <div class="header__content">
