@@ -1,6 +1,6 @@
 //import debounce from 'lodash.debounce';
-// Data Requests http://www.omdbapi.com/?apikey=[yourkey]&
-// IMG Reqests http://img.omdbapi.com/?apikey=[yourkey]&
+// Data Requests https://www.omdbapi.com/?apikey=[yourkey]&
+// IMG Reqests https://img.omdbapi.com/?apikey=[yourkey]&
 // API Key 373b4567
 
 const menu = document.querySelector(".menu__backdrop");
@@ -57,7 +57,7 @@ document.addEventListener("input", function () { // Event listener added to wait
             const userInput = getUserInput();
             if (!userInput) return; // Checking once more for input otherwise stops the function
 
-            const moviesFetch = await fetch(`http://www.omdbapi.com/?apikey=373b4567&s=${userInput}`); // Fetchs the the movies with the users input as the search
+            const moviesFetch = await fetch(`https://www.omdbapi.com/?apikey=373b4567&s=${userInput}`); // Fetchs the the movies with the users input as the search
             let moviesData = await moviesFetch.json(); // Convert it to json
             if (!moviesData.Search) return; // If the array of movies hasnt been fetched yet, stop the function
 
