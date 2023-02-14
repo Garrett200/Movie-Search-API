@@ -324,7 +324,7 @@ nav {
 }
 
 .menu__list--item {
-    margin: 150px 0;
+    margin: 100px 0;
     text-align: center;
 }
 
@@ -367,12 +367,16 @@ nav {
 
 @media (max-width: 480px) {
 
+    body {
+        width: 100vw;
+    }
+
     .nav__link--list {
         visibility: hidden;
     }
     
     .header {
-        padding: 100px 24px 0 24px;
+        padding: 36px 24px 0 24px;
     }
     .title {
         font-size: 36px;
