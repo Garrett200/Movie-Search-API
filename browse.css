@@ -487,6 +487,7 @@ nav {
 @keyframes fade-in {
     0% {
         opacity: 0;
+        left: 120px;
     }
     20% {
         opacity: 0.2;
@@ -508,21 +509,27 @@ nav {
 @keyframes fade-out {
     0% {
         opacity: 1;
+        left: 20px;
     }
     20% {
         opacity: 0.8;
+        left: 40px;
     }
     40% {
         opacity: 0.6;
+        left: 60px;
     }
     60% {
         opacity: 0.4;
+        left: 80px;
     }
     80% {
         opacity: 0.2;
+        left: 100px;
     }
     100% {
         opacity: 0;
+        left: 120px;
     }
 }
 
@@ -547,23 +554,23 @@ nav {
 }
 
 .menu__list--item {
-    padding: 16px 0;
+    margin: 150px 0;
     text-align: center;
 }
 
 
 .menu__list--link {
     font-weight: 600;
-    font-size: 26px;
+    font-size: 56px;
     letter-spacing: 3px;
     color: #e8eaed;
 }
 
 .menu__btn--close {
     align-self: flex-end;
-    margin: 0;
-    height: 28px;
-    width: 28px;
+    margin: 12px 12px 0 0;
+    height: 34px;
+    width: 34px;
     display: flex;
     border: none;
     justify-content: center;
@@ -572,8 +579,8 @@ nav {
 }
 
 .menu__close--image {
-    height: 24px;
-    width: 24px;
+    height: 34px;
+    width: 34px;
     filter: invert(98%) sepia(1%) saturate(511%) hue-rotate(181deg) brightness(99%) contrast(87%);
 }
 
@@ -593,12 +600,25 @@ nav {
     }
     
     .header {
-        padding: 100px 24px 0 24px;
+        padding: 36px 24px 0 24px;
     }
     .title {
         font-size: 36px;
         letter-spacing: 3px;
     }
+
+    .browse__title--wrapper {
+        display: flex;
+    }
+
+    #filter {
+        max-width: 180px;
+    }
+
+    .browse__title {
+        font-size: 22px;
+    }
+
     .sub__title {
         margin-top: 36px;
         font-size: 22px;
@@ -606,6 +626,7 @@ nav {
 
     .header__search--wrapper {
         position: relative;
+        margin-left: 0;
     }
     .header__search {
         padding: 14px 60px 14px 20px;
@@ -618,7 +639,9 @@ nav {
         right: 8px;
         border: none;
         box-shadow: none;
-        padding: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .magnifying-glass {
@@ -642,5 +665,10 @@ nav {
 
     nav {
         padding: 0 24px;
+    }
+
+    .movie__list {
+        display: flex;
+        flex-direction: column;
     }
 }
