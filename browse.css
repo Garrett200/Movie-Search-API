@@ -26,6 +26,7 @@ h2 {
     font-weight: 900;
     font-size: 32px;
     padding-left: 8px;
+    color: #2b2a33;
 }
 
 .click {
@@ -52,8 +53,8 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 48px;
-    height: 100px;
+    padding: 12px 48px;
+    background-color: #2e6853;
     letter-spacing: 0.5px;
 }
 
@@ -113,7 +114,7 @@ nav {
 .nav__link--btn {
     font-size: 18px;
     font-weight: 600;
-    padding: 14px 44px;
+    padding: 10px 44px;
     border-radius: 999px;
     border: 1px solid #42414d;
     color: #e8eaed;
@@ -134,8 +135,12 @@ nav {
 
 */
 
+#landing {
+    padding-bottom: 48px;
+}
+
 .header {
-    padding: 24px 96px 0 96px;
+    padding: 48px 96px 0 96px;
 }
 
 .header__content {
@@ -149,12 +154,13 @@ nav {
 .title {
     font-size: 42px;
     letter-spacing: 2px;
+    color: #e8eaed;
     font-weight: 700;
 }
 
 .header__search--wrapper {
-    margin: 40px 0 0 40px;
-    box-shadow: 6px 6px 18px 0 rgb(0, 0, 0, 0.3);
+    margin: 40px 0 0 36px;
+    max-width: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -169,23 +175,24 @@ nav {
     border-radius: 55px;
     position: relative;
     border: solid 1px #42414d;
+    box-shadow: 6px 6px 18px 0 rgb(0, 0, 0, 0.3);
     transition: all 300ms ease;
 }
 
-.header__search:hover {
+.header__search--wrapper:hover .header__search {
     border: solid 1px #2b2a33;
     background-color: #42414d;
 }
 
 .magnifying-glass {
-    filter: invert(98%) sepia(6%) saturate(494%) hue-rotate(177deg) brightness(96%) contrast(94%);
+    filter: invert(31%) sepia(57%) saturate(365%) hue-rotate(107deg) brightness(97%) contrast(90%);
     transition: all 300ms ease;
     height: 40px;
     width: 40px;
 }
 
-#header__search:hover .magnifying-glass {
-    filter: invert(60%) sepia(47%) saturate(428%) hue-rotate(107deg) brightness(87%) contrast(85%);
+.header__search--wrapper:hover .magnifying-glass {
+    filter: invert(77%) sepia(8%) saturate(2415%) hue-rotate(107deg) brightness(73%) contrast(86%);
 }
 
 .search-btn {
@@ -214,7 +221,11 @@ nav {
 */
 
 #browse {
-    margin-top: 26px;
+    border-top: solid 1px #42414d;
+}
+
+.browse__container {
+    margin-top: 16px;
 }
 
 .decor {
@@ -236,13 +247,14 @@ nav {
 }
 
 #filter {
-    font-weight: 600;
+    font-weight: 500;
     color: #e8eaed;
     background-color: #2b2a33;
     border: 1px solid #42414d;
     border-radius: 12px;
     padding: 0 16px;
     transition: all 300ms ease;
+    box-shadow: 6px 6px 18px 0 rgb(0, 0, 0, 0.3);
 }
 
 #filter:hover {
@@ -271,6 +283,7 @@ nav {
     transition: all 300ms ease;
     position: relative;
     overflow: hidden;
+    box-shadow: 0px 4px 26px 2px #8a8a8a1f;
 }
 
 .movie__wrapper:before {
@@ -345,25 +358,27 @@ nav {
     font-weight: 600;
     letter-spacing: 1px;
     border: none;
+    color: #e8eaed;
     border-radius: 4px;
-    background-color: #4aa584;
+    background-color: #2e6853;
     transition: all 300ms ease;
 }
 
 .watch__btn:hover {
-    background-color: #2e6853;
+    background-color: #4aa584;
     color: #e8eaed;
+    scale: 0.98;
 }
 
 .loading {
-    background-color: #4aa584;
+    background-color: #2e6853;
     height: 4px;
     width: 100%;
     display: none;
 }
 
 .loading-animation {
-    background-color: #2e6853;
+    background-color: #4aa584;
     width: calc(50%);
     height: 4px;
     animation: left-to-right 1600ms infinite;
@@ -378,7 +393,7 @@ nav {
     height: 90px;
     width: 90px;
     position: absolute;
-    margin-top: 200px;
+    margin-top: 280px;
     z-index: 3;
     display: none;
     filter: invert(22%) sepia(5%) saturate(1462%) hue-rotate(206deg) brightness(100%) contrast(88%);
@@ -411,7 +426,7 @@ nav {
 */
 
 #footer {
-    border-top: solid 1px #6c6e91;
+    border-top: solid 1px #42414d;
     background-color: #2b2a33;
     padding-top: 36px;
 }
@@ -429,9 +444,14 @@ nav {
     filter: invert(100%);
 }
 
+.footer__title {
+    color: #2e6853;
+    letter-spacing: 0.5px;
+}
+
 .logo__wrapper {
     display: flex;
-    margin-bottom: 12px;
+    margin-bottom: 18px;
 }
 
 .links__list {
@@ -439,18 +459,19 @@ nav {
 }
 
 .footer__link {
-    padding: 12px;
+    padding: 12px 24px;
 }
 
 .link__item {
     color: #e8eaed;
     font-weight: 500;
+    letter-spacing: 0.2px;
 }
 
 .copyright {
     color: #0e0e0f;
     font-size: 14px;
-    padding-bottom: 12px;
+    margin: 12px;
 }
 
 /* 
@@ -549,8 +570,8 @@ nav {
     width: 100%;
 }
 
-.menu__open--image:hover {
-    filter: invert(55%) sepia(52%) saturate(383%) hue-rotate(107deg) brightness(94%) contrast(87%);
+.menu__btn:hover .menu__open--image {
+    filter: invert(22%) sepia(15%) saturate(458%) hue-rotate(206deg) brightness(101%) contrast(90%);
 }
 
 .menu__list {
@@ -588,10 +609,6 @@ nav {
     height: 34px;
     width: 34px;
     filter: invert(98%) sepia(1%) saturate(511%) hue-rotate(181deg) brightness(99%) contrast(87%);
-}
-
-.menu__btn:hover {
-    filter: invert(94%) sepia(28%) saturate(102%) hue-rotate(177deg) brightness(96%) contrast(94%);
 }
 
 .menu__close--image:hover {
