@@ -77,8 +77,7 @@
                         Over 100,000 Titles From Anywhere.
                     </h1>
                     <div class="header__search--wrapper">
-                        <input class="header__search" oninput="getUserInput()" ;
-                            placeholder="Search with flicks">
+                        <input class="header__search" placeholder="Search with flicks">
                         <a class="search-btn
                                         click
                                         search__btn--hover-effect
@@ -102,7 +101,7 @@
                         <h1 class="browse__title">
                             Search Results:
                         </h1>
-                        <select id="filter" class="click" onchange="filterChange(event)">
+                        <select id="filter" class="click" onchange="filterChange(filter)">
                             <option value="ALPHABETICAL">A - Z</option>
                             <option value="TYPE_MOVIE">Movies Only</option>
                             <option value="TYPE_SERIES">Series Only</option>
@@ -156,5 +155,5 @@
         </div>
     </footer>
 </body>
-<script src="browse.js" defer></script>
+<script src="browse.js"></script>
 </html>
