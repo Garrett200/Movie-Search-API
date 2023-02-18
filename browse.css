@@ -10,7 +10,6 @@
 html {
     scroll-behavior: smooth;
     background-color: #2b2a33;
-    overflow-x: hidden;
 }
 
 li {

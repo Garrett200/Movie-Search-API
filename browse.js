@@ -5,7 +5,7 @@
 
 const menu = document.querySelector(".menu__backdrop");
 
-function openMenu () {
+function openMenu() {
     menu.style.display = 'flex';
     menu.classList.add("fade-in");
     timer = setTimeout(() => {
@@ -30,6 +30,66 @@ function switchTabs() {
     window.location.href = 'browse.html';
 }
 
+const filter = document.querySelector('#filter');
+filter.addEventListener("input", function () {
+    let sortFunction; // Defining sort function for future use
+            if (filter === 'ALPHABETICAL') {
+                sortFunction = (a, b) => a.Title.localeCompare(b.Title); // Comparing the titles with localeCompare to alphabetize
+            } else if (filter === 'OLD_TO_NEW') {
+                sortFunction = (a, b) => {
+                    const yearA = parseYear(a.Year);
+                    const yearB = parseYear(b.Year);
+                    return yearA - yearB
+                }
+            } else if (filter === 'NEW_TO_OLD') {
+                sortFunction = (a, b) => {
+                    const yearA = parseYear(a.Year);
+                    const yearB = parseYear(b.Year);
+                    return yearB - yearA
+                }
+            }
+
+            let filteredMovies = moviesData.Search;
+            if (filter === 'TYPE_MOVIE' || filter === 'TYPE_SERIES') {
+                filteredMovies = filteredMovies.filter(movie => movie.Type === filter.split('_')[1].toLowerCase());
+            }
+
+            if (sortFunction) {
+                filteredMovies.sort(sortFunction);
+            }
+
+            timer = setTimeout(() => {
+                loading.classList.remove("loading__visible");
+                loadingAnimation.classList.remove("loading__visible");
+                spinner.style.display = 'none'
+                movieWrapper.style.display = 'flex'
+                movieWrapper.innerHTML = filteredMovies.map(movieHTML).join('');
+            }, 300);
+        }
+
+        function parseYear(year) { // Defining parseYear for use in the filter functions
+            return year.indexOf("-") === -1 ? parseInt(year) : parseInt(year.split("-")[0]); /* IndexOf finds the first occurence of '-' in the year string and if true
+                                                                                              converts the year into a integer with parseInt and splits it at the '-' into two integers */
+        }
+
+        function movieHTML(movie) {
+            return `<li class="movie">
+                        <div class="movie__wrapper">
+                            <img class="movie__img" src="${movie.Poster}">
+                            <div class="movie__info">
+                                <div class="movie__info-wrapper">
+                                    <h1 class="movie__title">${movie.Title}</h1>
+                                    <h3 class="movie__date">${movie.Year}</h3>
+                                </div>
+                                <div class="watch__btn-wrapper">
+                                    <button class="watch__btn click">Rent or Buy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>`
+        }
+}
+
 document.addEventListener("input", function () { // Event listener added to wait until the page is loaded to run the script
     // HTML Classes defined into constants ~
     const movieWrapper = document.querySelector(".movie__list");
@@ -49,7 +109,7 @@ document.addEventListener("input", function () { // Event listener added to wait
             clearTimeout(timer); // Stops the function until the timer has ran out
 
             // Adds the loading__visible class to the loading animations while the movies are not visible
-            loading.classList.add("loading__visible"); 
+            loading.classList.add("loading__visible");
             loadingAnimation.classList.add("loading__visible");
             spinner.style.display = 'flex'
             movieWrapper.style.display = 'none'
@@ -98,10 +158,10 @@ document.addEventListener("input", function () { // Event listener added to wait
 
         function parseYear(year) { // Defining parseYear for use in the filter functions
             return year.indexOf("-") === -1 ? parseInt(year) : parseInt(year.split("-")[0]); /* IndexOf finds the first occurence of '-' in the year string and if true
-                                                                                              converts the year into a integer with parseInt and splits it at the '-' into two integers */ 
+                                                                                              converts the year into a integer with parseInt and splits it at the '-' into two integers */
         }
 
-        function movieHTML(movie) { 
+        function movieHTML(movie) {
             return `<li class="movie">
                         <div class="movie__wrapper">
                             <img class="movie__img" src="${movie.Poster}">
