@@ -14,8 +14,8 @@
 
 <body>
     <section id="landing">
-        <div class="row">
-            <nav>
+        <nav>
+            <div class="nav__row">
                 <figure class="nav__logo--wrapper">
                     <img src="assets/film-logo.png" class="nav__logo" alt="">
                     <h2>flicks</h2>
@@ -70,7 +70,9 @@
                                 link__hover-effect--white" onclick="closeMenu()">Contact</a>
                         </li>
                     </ul>
-            </nav>
+                </div>
+        </nav>
+        <div class="row">
             <header class="header">
                 <div class="header__content">
                     <h1 class="title">
@@ -155,5 +157,6 @@
         </div>
     </footer>
 </body>
-<script src="browse.js"></script>
+<script type="module" src="browse.js"></script>
+
 </html>

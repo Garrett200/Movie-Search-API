@@ -1,4 +1,7 @@
 import config from "./config.js";
+
+
+
 // Data Requests https://www.omdbapi.com/?apikey=[yourkey]&
 // IMG Reqests https://img.omdbapi.com/?apikey=[yourkey]&
 // API Key 373b4567
@@ -32,15 +35,16 @@ function getUserInput() {
 }
 
 async function movieData() {
-  try {
-    const moviesData = await fetch(`https://www.omdbapi.com/?apikey=${config.apiKey}&s=${getUserInput()}`);
-    const moviesObj = await moviesData.json();
-    const movieArr = moviesObj.Search;
-    return movieArr;
-  } catch (error) {
-    console.error(`Error fetching movie data: ${error}`);
-    return [];
-  }
+    try {
+      const moviesData = await fetch(`https://www.omdbapi.com/?apikey=${config.apiKey}&s=${getUserInput()}`);
+      const moviesObj = await moviesData.json();
+      const movieArr = moviesObj.Search;
+      movieInfo = movieArr || []; // Initialize movieInfo with an empty array if movieArr is null or undefined
+      return movieArr;
+    } catch (error) {
+      console.error(`Error fetching movie data: ${error}`);
+      return [];
+    }
 }
 
 function movieHTML(movie) {
@@ -75,7 +79,8 @@ function parseYear(year) { // Defining parseYear for use in the filter functions
 
 async function filteredMovies() {
     let sortFunction;
-
+    const moviesData = await movieData(); // Wait for the movie data to be fetched
+    let movieInfo = moviesData; // Define movieInfo here
     if (!movieInfo) {
         return;
     }
@@ -112,13 +117,15 @@ async function renderMovies() {
     movieWrapper.style.display = 'none'
 
     await filteredMovies();
-    timer = setTimeout(() => {
+    timer = setTimeout(async () => {
+        const moviesData = await movieData(); // Wait for the movie data to be fetched
+        let movieInfo = moviesData;
         loading.classList.remove("loading__visible");
         loadingAnimation.classList.remove("loading__visible");
         spinner.style.display = 'none'
         movieWrapper.style.display = 'flex'
         movieWrapper.innerHTML = movieInfo.map(movieHTML).join('');
-    }, 300)
+    }, 400)
 }
 
 document.addEventListener('input', async function() {

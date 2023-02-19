@@ -49,12 +49,18 @@ h2 {
 */
 
 nav {
+    background-color: #2e6853;
+}
+
+.nav__row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 12px 48px;
-    background-color: #2e6853;
     letter-spacing: 0.5px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .nav__logo {
