@@ -378,17 +378,16 @@ nav {
 .loading {
     background-color: #2e6853;
     height: 4px;
-    width: 100vw;
-    overflow-x: hidden;
+    width: 100%;
+    overflow: hidden;
     display: none;
 }
 
 .loading-animation {
     background-color: #4aa584;
-    overflow-x: hidden;
-    width: calc(50%);
-    height: 4px;
-    animation: left-to-right 1600ms infinite;
+    width: 100%;
+    height: 100%;
+    animation: loading-bar 2800ms infinite;
     display: none;
 }
 
@@ -404,7 +403,7 @@ nav {
     z-index: 3;
     display: none;
     filter: invert(22%) sepia(5%) saturate(1462%) hue-rotate(206deg) brightness(100%) contrast(88%);
-    animation: spin 600ms infinite;
+    animation: spin 2s ease-in-out infinite;
 }
 
 @keyframes spin {
@@ -417,13 +416,23 @@ nav {
     }
 }
 
-@keyframes left-to-right {
-    0% {
-        transform: translateX(-100%);
-    }
-    100% {
-        transform: translateX(220%);
-    }
+@keyframes loading-bar {
+  0% {
+    width: 0%;
+  }
+  20% {
+    width: 100%;
+  }
+  40% {
+    width: 0;
+  }
+  70% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+
 }
 
 /*
