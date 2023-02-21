@@ -5,12 +5,12 @@ const movieWrapper = document.querySelector(".movie__list");
 const loading = document.querySelector(".loading");
 const loadingAnimation = document.querySelector(".loading-animation");
 const spinner = document.querySelector(".spinner");
-const searchBar = document.querySelector('.header__search')
-const filter = searchBar.value;
-let movieInfo;
+const filters = document.querySelector('#filter')
+let filter = filters.value;
 let timer;
+let movieInfo;
 
-export function openMenu() {
+function openMenu() {
     menu.style.display = 'flex';
     menu.classList.add("fade-in");
     timer = setTimeout(() => {
@@ -20,7 +20,6 @@ export function openMenu() {
 }
 
 export function closeMenu() {
-    const menu = document.querySelector(".menu__backdrop");
     menu.classList.add("fade-out");
     timer = setTimeout(() => {
         menu.classList.remove("fade-out");
@@ -51,6 +50,8 @@ async function movieData() {
     }
 }
 
+let moviesData = await movieData();
+
 function movieHTML(movie) {
     return `<li class="movie">
                 <div class="movie__wrapper">
@@ -76,9 +77,12 @@ function parseYear(year) { // Defining parseYear for use in the filter functions
 
 async function movieFilter() {
     let sortFunction;
-    const moviesData = await movieData(); // Wait for the movie data to be fetched
-    let movieInfo = moviesData; // Define movieInfo here
-    if (!movieInfo) {
+    let movieInfo = moviesData;
+    if (filter === 'TYPE_MOVIE' || filter === 'TYPE_SERIES') {
+        console.log('filter')
+        movieInfo = movieInfo.filter(movie => movie.Type === filter.split('_')[1].toLowerCase());
+    }
+    if (movieInfo) {
         return;
     }
 
@@ -106,10 +110,6 @@ async function movieFilter() {
 }
 
 async function renderMovies() {
-    let timer;
-    const moviesData = await movieData(); // Wait for the movie data to be fetched
-    let movieInfo = moviesData;
-
     clearTimeout(timer);
     await movieFilter();
     loading.classList.add("loading__visible");
@@ -132,4 +132,8 @@ async function renderMovies() {
 
 document.addEventListener('input', async function() {
     await renderMovies();
+});
+
+filters.addEventListener('select', async () => {
+    await movieFilter();
 });
