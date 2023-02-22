@@ -1,25 +1,29 @@
-import config from "./config.js";
-
+// CONTANTS
 const menu = document.querySelector(".menu__backdrop")
 const movieWrapper = document.querySelector(".movie__list");
 const loading = document.querySelector(".loading");
 const loadingAnimation = document.querySelector(".loading-animation");
 const spinner = document.querySelector(".spinner");
-const filters = document.querySelector('#filter')
-let filter = filters.value;
+const filters = document.querySelector("#filter");
+const searchBar = document.querySelector(".header__search");
+const menuBtn = document.querySelector(".menu__btn");
 let timer;
 let movieInfo;
+let open;
+
+// SINGLE FUNCTIONS
 
 function openMenu() {
+    const open = true;
     menu.style.display = 'flex';
     menu.classList.add("fade-in");
     timer = setTimeout(() => {
         menu.classList.remove("fade-in");
     }, 300);
-    return console.log('menu open')
 }
 
-export function closeMenu() {
+function closeMenu() {
+    const open = false;
     menu.classList.add("fade-out");
     timer = setTimeout(() => {
         menu.classList.remove("fade-out");
@@ -28,10 +32,11 @@ export function closeMenu() {
 
 }
 
-export function switchTabs() {
+function switchTabs() {
     window.location.href = 'browse.html';
 }
 
+// MOVIE RENDERING AND FILTERING FUNCTIONS
 
 function getUserInput() {
     return document.querySelector(".header__search").value;
@@ -39,18 +44,16 @@ function getUserInput() {
 
 async function movieData() {
     try {
-      const moviesData = await fetch(`https://www.omdbapi.com/?apikey=${config.apiKey}&s=${getUserInput()}`);
-      const moviesObj = await moviesData.json();
-      const movieArr = moviesObj.Search;
-      movieInfo = movieArr || []; // Initialize movieInfo with an empty array if movieArr is null or undefined
-      return movieArr;
+        const moviesData = await fetch(`https://www.omdbapi.com/?apikey=373b4567&s=${getUserInput()}`);
+        const moviesObj = await moviesData.json();
+        const movieArr = moviesObj.Search;
+        movieInfo = movieArr || []; // Initialize movieInfo with an empty array if movieArr is null or undefined
+        return movieArr;
     } catch (error) {
-      console.error(`Error fetching movie data: ${error}`);
-      return [];
+        console.error(`Error fetching movie data: ${error}`);
+        return [];
     }
 }
-
-let moviesData = await movieData();
 
 function movieHTML(movie) {
     return `<li class="movie">
@@ -77,12 +80,12 @@ function parseYear(year) { // Defining parseYear for use in the filter functions
 
 async function movieFilter() {
     let sortFunction;
+    let filter = filters.value;
+    let moviesData = await movieData();
     let movieInfo = moviesData;
-    if (filter === 'TYPE_MOVIE' || filter === 'TYPE_SERIES') {
-        console.log('filter')
-        movieInfo = movieInfo.filter(movie => movie.Type === filter.split('_')[1].toLowerCase());
-    }
-    if (movieInfo) {
+
+    if (!movieInfo) {
+        console.log('Nothing found.')
         return;
     }
 
@@ -102,16 +105,16 @@ async function movieFilter() {
         }
     } else if (filter === 'TYPE_MOVIE' || filter === 'TYPE_SERIES') {
         movieInfo = movieInfo.filter(movie => movie.Type === filter.split('_')[1].toLowerCase());
-    } else {
-        if (sortFunction) {
-            movieInfo = movieInfo.sort(sortFunction);
-        }
     }
+
+    movieInfo = movieInfo.sort(sortFunction);
+    movieWrapper.innerHTML = movieInfo.map(movieHTML).join('');
 }
 
 async function renderMovies() {
     clearTimeout(timer);
-    await movieFilter();
+    let moviesData = await movieData();
+    let movieInfo = moviesData;
     loading.classList.add("loading__visible");
     loadingAnimation.classList.add("loading__visible");
     spinner.style.display = 'flex';
@@ -127,13 +130,23 @@ async function renderMovies() {
         if (movieInfo) {
             movieWrapper.style.display = 'flex';
         }
-    }, 1000);
+    }, 900);
 }
 
-document.addEventListener('input', async function() {
-    await renderMovies();
-});
+// EVENT LISTENERS
 
-filters.addEventListener('select', async () => {
-    await movieFilter();
-});
+function checkPage() {
+    if (searchBar || filters) {
+        searchBar.addEventListener('input', async () => {
+            await renderMovies();
+        });
+
+        filters.addEventListener('change', function () {
+            movieFilter();
+        });
+    } else { 
+        return;
+    }
+
+}
+checkPage();
