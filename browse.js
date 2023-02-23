@@ -7,6 +7,7 @@ const spinner = document.querySelector(".spinner");
 const filters = document.querySelector("#filter");
 const searchBar = document.querySelector(".header__search");
 const menuBtn = document.querySelector(".menu__btn");
+const results = document.querySelector(".search__results");
 let timer;
 let movieInfo;
 let open;
@@ -113,12 +114,16 @@ async function movieFilter() {
 
 async function renderMovies() {
     clearTimeout(timer);
+    
     let moviesData = await movieData();
     let movieInfo = moviesData;
+
+    results.style.display = 'none';
     loading.classList.add("loading__visible");
     loadingAnimation.classList.add("loading__visible");
     spinner.style.display = 'flex';
     movieWrapper.style.display = 'none';
+
     if (movieInfo) {
         movieWrapper.innerHTML = movieInfo.map(movieHTML).join('');
     }
@@ -129,7 +134,12 @@ async function renderMovies() {
         spinner.style.display = 'none';
         if (movieInfo) {
             movieWrapper.style.display = 'flex';
+        } else if (!getUserInput()) {
+            results.style.display = 'none';
+        } else {
+            results.style.display = 'flex';
         }
+
     }, 900);
 }
 

@@ -410,6 +410,15 @@ nav {
     animation: spin 2s ease-in-out infinite;
 }
 
+.search__results {
+    color: #e8eaed;
+    font-size: 42px;
+    font-weight: 600;
+    position: absolute;
+    margin-top: 180px;
+    display: none;
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);
