@@ -48,7 +48,7 @@ function switchTabs() {
             const userInput = searchBar.value;
             localStorage.setItem('searchTerm', userInput);
 
-            // navigate to browse page with user's input
+            // navigates to browse page with user's input
             window.location.href = `browse.html`;
         }
     })
@@ -67,7 +67,7 @@ function searchEnter() {
 }
 
 // BROWSE PAGE | MOVIE RENDERING AND FILTERING FUNCTIONS
-
+/*
 function getUserInput() {
     if (searchTerm) {
         return searchTerm;
@@ -75,13 +75,18 @@ function getUserInput() {
         return document.querySelector(".header__search").value;
     }
 }
+*/
+
+const getUserInput = (searchTerm = '') => {
+    return searchTerm || document.querySelector(".header__search").value;
+};
 
 async function movieData() {
     try {
         const moviesData = await fetch(`https://www.omdbapi.com/?apikey=373b4567&s=${getUserInput()}`);
         const moviesObj = await moviesData.json();
-        const movieArr = moviesObj.Search;
-        movieInfo = movieArr || []; // Initialize movieInfo with an empty array if movieArr is null or undefined
+        const { Search: movieArr } = moviesObj;
+        movieInfo = movieArr || [];
         return movieArr;
     } catch (error) {
         console.error(`Error fetching movie data: ${error}`);
@@ -124,9 +129,8 @@ function movieHTML(movie) {
 }
 
 
-function parseYear(year) { // Defining parseYear for use in the filter functions
-    return year.indexOf("-") === -1 ? parseInt(year) : parseInt(year.split("-")[0]); /* IndexOf finds the first occurence of '-' in the year string and if true
-                                                                                      converts the year into a integer with parseInt and splits it at the '-' into two integers */
+function parseYear(year) {
+    return year.indexOf("-") === -1 ? parseInt(year) : parseInt(year.split("-")[0]);
 }
 
 async function movieFilter() {
@@ -166,7 +170,7 @@ async function renderMovies() {
     clearTimeout(timer);
 
     let moviesData = await movieData();
-    let movieInfo = moviesData;
+    let movieInfo = moviesData || [];
 
     results.style.display = 'none';
     loading.classList.add("loading__visible");
@@ -192,7 +196,9 @@ async function renderMovies() {
     }, 900);
 }
 
-// PAGE CHECK & EVENT LISTENERS
+  
+
+// PAGE CHECK & EVENT LISTENERS FOR BOTH PAGES
 
 async function checkPage() {
     if (browse) {

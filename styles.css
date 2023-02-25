@@ -60,13 +60,14 @@ h2 {
 
 nav {
     background-color: #2e6853;
+    padding: 0;
 }
 
 .nav__row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 48px;
+    padding: 12px 36px;
     letter-spacing: 0.5px;
     max-width: 1200px;
     width: 100%;
@@ -389,7 +390,7 @@ nav {
     }
 
     .nav__link--list {
-        visibility: hidden;
+        display: none;
     }
     
     .header {
@@ -448,6 +449,6 @@ nav {
     }
 
     nav {
-        padding: 0 24px;
+        padding: 0;
     }
 }

@@ -485,6 +485,10 @@ nav {
 
 .links__list {
     display: flex;
+    max-height: 120px;
+    height: 100%;
+    width: 100%;
+    max-width: 500px;
 }
 
 .footer__link {
@@ -716,7 +720,7 @@ nav {
     }
 
     .nav__link--list {
-        width: 0px;
+        display: none;
     }
 
     nav {
@@ -730,5 +734,12 @@ nav {
 
     #browse {
         overflow-x: hidden;
+    }
+
+    /* FOOTER */
+
+    .links_list {
+        display: flex;
+        flex-direction: column;
     }
 }
