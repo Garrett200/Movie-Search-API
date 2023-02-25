@@ -1,4 +1,4 @@
-// CONTANTS
+// Variables being defined
 const menu = document.querySelector(".menu__backdrop")
 const movieWrapper = document.querySelector(".movie__list");
 const loading = document.querySelector(".loading");
@@ -8,11 +8,16 @@ const filters = document.querySelector("#filter");
 const searchBar = document.querySelector(".header__search");
 const menuBtn = document.querySelector(".menu__btn");
 const results = document.querySelector(".search__results");
+const searchBtn = document.querySelector(".search-btn");
+const index = document.querySelector("#index")
+const browse = document.querySelector("#browse")
 let timer;
+let searchTerm;
 let movieInfo;
 let open;
 
-// SINGLE FUNCTIONS
+
+// INDEX PAGE FUNCTIONS
 
 function openMenu() {
     const open = true;
@@ -33,14 +38,42 @@ function closeMenu() {
 
 }
 
+// INDEX PAGE EVENT LISTENERS
+
 function switchTabs() {
-    window.location.href = 'browse.html';
+    searchBar.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+
+            // stores input value in local storage
+            const userInput = searchBar.value;
+            localStorage.setItem('searchTerm', userInput);
+
+            // navigate to browse page with user's input
+            window.location.href = `browse.html`;
+        }
+    })
 }
 
-// MOVIE RENDERING AND FILTERING FUNCTIONS
+function searchEnter() {
+    searchBtn.addEventListener('click', function (event) {
+
+        // stores input value in local storage
+        const userInput = searchBar.value;
+        localStorage.setItem('searchTerm', userInput);
+
+        // navigate to browse page with user's input
+        window.location.href = `browse.html`;
+    });
+}
+
+// BROWSE PAGE | MOVIE RENDERING AND FILTERING FUNCTIONS
 
 function getUserInput() {
-    return document.querySelector(".header__search").value;
+    if (searchTerm) {
+        return searchTerm;
+    } else {
+        return document.querySelector(".header__search").value;
+    }
 }
 
 async function movieData() {
@@ -57,20 +90,37 @@ async function movieData() {
 }
 
 function movieHTML(movie) {
-    return `<li class="movie">
-                <div class="movie__wrapper">
-                    <img class="movie__img" src="${movie.Poster}">
-                    <div class="movie__info">
-                        <div class="movie__info-wrapper">
-                            <h1 class="movie__title">${movie.Title}</h1>
-                            <h3 class="movie__date">${movie.Year}</h3>
-                        </div>
-                        <div class="watch__btn-wrapper">
-                            <button class="watch__btn click">Rent or Buy</button>
+    if (movie.Poster === "N/A") {
+        return `<li class="movie">
+                    <div class="movie__wrapper">
+                        <img class="movie__img" src="assets/xmark-solid.svg">
+                        <div class="movie__info">
+                            <div class="movie__info-wrapper">
+                                <h1 class="movie__title">${movie.Title}</h1>
+                                <h3 class="movie__date">${movie.Year}</h3>
+                            </div>
+                            <div class="watch__btn-wrapper">
+                                <button class="watch__btn click">Rent or Buy</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </li>`
+                </li>`
+    } else {
+        return `<li class="movie">
+                    <div class="movie__wrapper">
+                        <img class="movie__img" src="${movie.Poster}">
+                        <div class="movie__info">
+                            <div class="movie__info-wrapper">
+                                <h1 class="movie__title">${movie.Title}</h1>
+                                <h3 class="movie__date">${movie.Year}</h3>
+                            </div>
+                            <div class="watch__btn-wrapper">
+                                <button class="watch__btn click">Rent or Buy</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>`
+    }
 }
 
 
@@ -114,7 +164,7 @@ async function movieFilter() {
 
 async function renderMovies() {
     clearTimeout(timer);
-    
+
     let moviesData = await movieData();
     let movieInfo = moviesData;
 
@@ -139,14 +189,20 @@ async function renderMovies() {
         } else {
             results.style.display = 'flex';
         }
-
     }, 900);
 }
 
-// EVENT LISTENERS
+// PAGE CHECK & EVENT LISTENERS
 
-function checkPage() {
-    if (searchBar || filters) {
+async function checkPage() {
+    if (browse) {
+        const searchTerm = localStorage.getItem('searchTerm');
+        const searchField = document.querySelector('.header__search');
+        searchField.value = searchTerm;
+
+        if (searchTerm) {
+            await renderMovies();
+        }
         searchBar.addEventListener('input', async () => {
             await renderMovies();
         });
@@ -154,9 +210,11 @@ function checkPage() {
         filters.addEventListener('change', function () {
             movieFilter();
         });
-    } else { 
+    } else if (index) {
+        switchTabs();
+        searchEnter();
+    } else {
         return;
     }
-
 }
 checkPage();
