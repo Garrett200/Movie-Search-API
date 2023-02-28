@@ -652,6 +652,29 @@ nav {
     filter: invert(49%) sepia(22%) saturate(258%) hue-rotate(207deg) brightness(92%) contrast(83%);
 }
 
+.no-movie-wrapper {
+    background-color: #202020;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.no-movie-img {
+    margin-bottom: 40px;
+    height: 80px;
+    width: 80px;
+    filter: invert(0.8);  
+}
+
+.no-movie-span {
+    font-size: 24px;
+    font-weight: 600;
+    color: #494949;
+}
+
 /*
 
     SCREEN SIZES
@@ -710,6 +733,12 @@ nav {
     }
 }
 
+@media (max-width: 768px) {
+    .header__search {
+        width: 460px;
+    }
+}
+
 @media (max-width: 480px) {  
     .header {
         padding: 36px 24px 0 24px;
@@ -740,7 +769,7 @@ nav {
     }
     .header__search {
         padding: 14px 60px 14px 20px;
-        width: 330px;
+        max-width: 330px;
         margin: 0;
         font-size: 20px;
         border-radius: 36px;

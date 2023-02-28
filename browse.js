@@ -98,7 +98,10 @@ function movieHTML(movie) {
     if (movie.Poster === "N/A") {
         return `<li class="movie">
                     <div class="movie__wrapper">
-                        <img class="movie__img" src="assets/xmark-solid.svg">
+                        <div class="no-movie-wrapper">
+                            <img class="no-movie-img" src="assets/no-image.png">
+                            <span class="no-movie-span">No Image Found.<span>
+                        </div>
                         <div class="movie__info">
                             <div class="movie__info-wrapper">
                                 <h1 class="movie__title">${movie.Title}</h1>
