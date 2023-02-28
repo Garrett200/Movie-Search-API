@@ -657,13 +657,62 @@ nav {
     SCREEN SIZES
 
 */
-@media (max-width: 480px) {  
+
+/* Small phones, tablets, large smartphones */
+@media (max-width: 572px) {
+    .movie {
+        width: calc(100%);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav__link--list {
+        display: none;
+    }
+    .movie__list {
+        justify-content: center;
+        align-items: center;
+    }
+    .menu__btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+    }
+    .header__search--wrapper {
+        position: relative;
+        margin-left: 0;
+    }
+    .header__search {
+        padding: 14px 60px 14px 20px;
+        width: 330px;
+        margin: 0;
+        border-radius: 36px;
+        font-size: 20px;
+    }
+    .search-btn {
+        position: absolute;
+        right: 22px;
+        border: none;
+        box-shadow: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .header {
         padding: 36px 24px 0 24px;
     }
-    .title {
-        font-size: 36px;
-        letter-spacing: 3px;
+}
+
+/* DESKTOP */
+@media (max-width: 1160px) {
+    .movie__list {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {  
+    .header {
+        padding: 36px 24px 0 24px;
     }
     .footer__link {
         padding: 12px;
@@ -739,57 +788,5 @@ nav {
     .links_list {
         display: flex;
         flex-direction: column;
-    }
-}
-
-/* Small phones, tablets, large smartphones */
-@media (max-width: 572px) {
-    .movie {
-        width: calc(100%);
-    }
-}
-
-@media (max-width: 768px) {
-    .nav__link--list {
-        display: none;
-    }
-    .movie__list {
-        justify-content: center;
-        align-items: center;
-    }
-    .menu__btn {
-        width: 40px;
-        height: 40px;
-        display: flex;
-    }
-    .header__search--wrapper {
-        position: relative;
-        margin-left: 0;
-    }
-    .header__search {
-        padding: 14px 60px 14px 20px;
-        width: 330px;
-        margin: 0;
-        border-radius: 36px;
-        font-size: 20px;
-    }
-    .search-btn {
-        position: absolute;
-        right: 22px;
-        border: none;
-        box-shadow: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .header {
-        padding: 36px 24px 0 24px;
-    }
-}
-
-/* DESKTOP */
-@media (max-width: 1160px) {
-    .movie__list {
-        justify-content: center;
     }
 }
