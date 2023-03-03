@@ -17,7 +17,7 @@
             emailjs.init("hDCgqlu9cChmWH-zT");
         })();
     </script>
-    
+
     <title>flicks | Home</title>
 </head>
 
@@ -74,10 +74,11 @@
                                     link__hover-effect--white" onclick="closeMenu()">Browse</a>
                             </li>
                             <li class="menu__list--item">
-                                <a href="index.html" class="
+                                <button class="
+                                    click
                                     menu__list--link
                                     link__hover-effect
-                                    link__hover-effect--white" onclick="closeMenu()">Contact</a>
+                                    link__hover-effect--white" onclick="toggleModal()">Contact</button>
                             </li>
                         </ul>
                     </div>
@@ -132,9 +133,9 @@
                     </div>
                     <div class="form__item">
                         <label class="form__item--label">Message</label>
-                        <textarea class="input" name="message" type="text" required></textarea>
+                        <textarea class="input input__message" name="message" type="text" required></textarea>
                     </div>
-                    <button id="contact__submit" class="form__submit">
+                    <button id="contact__submit" class="form__submit click">
                         Send it my way
                     </button>
                 </form>

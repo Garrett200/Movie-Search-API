@@ -21,7 +21,7 @@ let isModalOpen = false;
 // INDEX PAGE FUNCTIONS
 
 function openMenu() {
-    const open = true;
+    let open = true;
     menu.style.display = 'flex';
     menu.classList.add("fade-in");
     timer = setTimeout(() => {
@@ -30,7 +30,7 @@ function openMenu() {
 }
 
 function closeMenu() {
-    const open = false;
+    let open = false;
     menu.classList.add("fade-out");
     timer = setTimeout(() => {
         menu.classList.remove("fade-out");
@@ -60,8 +60,8 @@ function contact(event) {
         )
     })
 }
-
 function toggleModal() {
+    menu.style.display = 'none';
     if (isModalOpen) {
         isModalOpen = false;
         return document.body.classList.remove("modal--open");
