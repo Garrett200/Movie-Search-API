@@ -244,6 +244,7 @@ async function checkPage() {
 
         if (searchTerm) {
             await renderMovies();
+            localStorage.setItem('searchTerm', "");
         }
         searchBar.addEventListener('input', async () => {
             await renderMovies();
