@@ -18,7 +18,7 @@ let open;
 let isModalOpen = false;
 
 
-// INDEX PAGE FUNCTIONS
+// MENU & CONTACT BUTTON FUNCTIONS
 
 function openMenu() {
     let open = true;
@@ -60,6 +60,7 @@ function contact(event) {
         )
     })
 }
+
 function toggleModal() {
     menu.style.display = 'none';
     if (isModalOpen) {
