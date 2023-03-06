@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="browse.css">
     <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("hDCgqlu9cChmWH-zT");
+        })();
+    </script>
+
     <title>flicks | Watch</title>
 </head>
 
@@ -37,7 +45,7 @@
                             ">Find a Movie</a>
                     </li>
                     <li class="nav__link">
-                        <button class="
+                        <button onclick="toggleModal()" class="
                                 nav__link--btn
                                 btn__hover-effect--color
                                 click
@@ -65,14 +73,77 @@
                                 link__hover-effect--white" onclick="closeMenu()">Browse</a>
                         </li>
                         <li class="menu__list--item">
-                            <a href="index.html" class="
+                            <button class="
+                                click
                                 menu__list--link
                                 link__hover-effect
-                                link__hover-effect--white" onclick="closeMenu()">Contact</a>
+                                link__hover-effect--white" onclick="toggleModal()">Contact</button>
                         </li>
                     </ul>
                 </div>
         </nav>
+        <div class="modal">
+            <div class="modal__half modal__about">
+                <h3 class="modal__title modal__title--about">Some info about me.</h3>
+                <h4 class="modal__sub-title modal__sub-title--about">Frontend Software Engineer.</h4>
+                <p class="modal__para">I'm a 22 year-old <b class="green">Frontend Software Engineer</b> with a passion
+                    for creating beautiful
+                    applications that are simple to use with an amazing <b class="green">user experience.</b>
+                    <br>
+                    I currently work on difficult engineering problems,
+                </p>
+                <div class="modal__languages">
+                    <figure class="modal__language">
+                        <img class="modal__language--img" src="assets/HTML5_Badge.svg" alt="HTML">
+                        <span class="language__name">HTML</span>
+                    </figure>
+                    <figure class="modal__language">
+                        <img class="modal__language--img" src="assets/CSS3_logo.svg" alt="CSS">
+                        <span class="language__name">CSS</span>
+                    </figure>
+                    <figure class="modal__language">
+                        <img class="modal__language--img" src="assets/javascript-svg.svg" alt="Javascript">
+                        <span class="language__name">Java</span>
+                    </figure>
+                    <figure class="modal__language">
+                        <img class="modal__language--img" src="assets/React-icon.svg" alt="React">
+                        <span class="language__name">React</span>
+                    </figure>
+                </div>
+            </div>
+            <div class="modal__half modal__contact">
+                <img class="modal__exit click" onClick="toggleModal()" src="assets/xmark-solid.svg" alt="">
+                <h3 class="modal__title modal__title--contact">
+                    Let's chat!
+                </h3>
+                <h3 class="modal__sub-title modal__sub-title--contact">
+                    I'd love to hear from you.
+                </h3>
+                <form id="contact__form" onsubmit="contact(event)">
+                    <div class="form__item">
+                        <label class="form__item--label">Name</label>
+                        <input class="input" name="user_name" type="text" required></input>
+                    </div>
+                    <div class="form__item">
+                        <label class="form__item--label">Email</label>
+                        <input class="input" name="user_email" type="email" required></input>
+                    </div>
+                    <div class="form__item">
+                        <label class="form__item--label">Message</label>
+                        <textarea class="input input__message" name="message" type="text" required></textarea>
+                    </div>
+                    <button id="contact__submit" class="form__submit click">
+                        Send it my way
+                    </button>
+                </form>
+                <div class="modal__overlay modal__overlay--loading">
+                    <img class="overlay__spinner" src="assets/spinner-solid.svg" alt="">
+                </div>
+                <div class="modal__overlay modal__overlay--success">
+                    Thanks for reaching out! Looking forward to getting back to you.
+                </div>
+            </div>
+        </div>
         <div class="row">
             <header class="header">
                 <div class="header__content">

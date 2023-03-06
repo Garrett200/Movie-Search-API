@@ -440,6 +440,7 @@ nav {
 
 .modal__languages {
     display: flex;  
+    justify-content: flex-start;
 }
 
 .modal__language {
@@ -470,6 +471,7 @@ nav {
 
 .modal__language--img {
     width: 100%;
+    min-width: 30px;
 }
 
 .modal__contact {
