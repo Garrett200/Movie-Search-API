@@ -9,8 +9,9 @@ const searchBar = document.querySelector(".header__search");
 const menuBtn = document.querySelector(".menu__btn");
 const results = document.querySelector(".search__results");
 const searchBtn = document.querySelector(".search-btn");
-const index = document.querySelector("#index")
-const browse = document.querySelector("#browse")
+const index = document.querySelector("#index");
+const browse = document.querySelector("#browse");
+const none = document.querySelector(".none");
 let timer;
 let searchTerm;
 let movieInfo;
@@ -26,7 +27,7 @@ function openMenu() {
     menu.classList.add("fade-in");
     timer = setTimeout(() => {
         menu.classList.remove("fade-in");
-    }, 300);
+    }, 200);
 }
 
 function closeMenu() {
@@ -35,7 +36,19 @@ function closeMenu() {
     timer = setTimeout(() => {
         menu.classList.remove("fade-out");
         menu.style.display = 'none';
-    }, 280);
+    }, 180);
+
+}
+
+function message() {
+    none.style.display = 'flex';
+    timer = setTimeout(() => {
+        none.classList.add("message-exit");
+    }, 700);
+    none.classList.remove("message-exit");
+    timer = setTimeout(() => {
+        none.style.display = 'none';
+    }, 1000);
 
 }
 
