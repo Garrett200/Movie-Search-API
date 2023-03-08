@@ -15,29 +15,28 @@ const none = document.querySelector(".none");
 let timer;
 let searchTerm;
 let movieInfo;
-let open;
+let open = false;
 let isModalOpen = false;
 
 
 // MENU & CONTACT BUTTON FUNCTIONS
 
-function openMenu() {
-    let open = true;
-    menu.style.display = 'flex';
-    menu.classList.add("fade-in");
-    timer = setTimeout(() => {
-        menu.classList.remove("fade-in");
-    }, 200);
-}
-
-function closeMenu() {
-    let open = false;
-    menu.classList.add("fade-out");
-    timer = setTimeout(() => {
-        menu.classList.remove("fade-out");
-        menu.style.display = 'none';
-    }, 180);
-
+function menuFunc() {
+    if (open) {
+        open = false;
+        menu.classList.add("fade-out");
+        timer = setTimeout(() => {
+            menu.classList.remove("fade-out");
+            menu.style.display = 'none';
+        }, 180);
+    } else {
+        open = true;
+        menu.style.display = 'flex';
+        menu.classList.add("fade-in");
+        timer = setTimeout(() => {
+            menu.classList.remove("fade-in");
+        }, 200);
+    }
 }
 
 function message() {
