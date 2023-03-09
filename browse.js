@@ -1,4 +1,4 @@
-// Variables being defined
+// Establishing variables
 const menu = document.querySelector(".menu__backdrop")
 const movieWrapper = document.querySelector(".movie__list");
 const loading = document.querySelector(".loading");
@@ -19,43 +19,63 @@ let open = false;
 let isModalOpen = false;
 
 
-// MENU & CONTACT BUTTON FUNCTIONS
+// MENU OPEN/CLOSE | FOOTER LINK MSG
+// CONTACT BTN MENU | EMAIL FORM AND LOADING ANIM
 
+// Menu Open and Close Function
 function menuFunc() {
+
+    // Checks if the menu is open by using the 'open' variable
     if (open) {
+
+        // Closes the menu with an animation and sets the var to false
         open = false;
         menu.classList.add("fade-out");
         timer = setTimeout(() => {
             menu.classList.remove("fade-out");
             menu.style.display = 'none';
-        }, 180);
+        }, 280);
     } else {
+
+        // Opens the menu with an animation and sets the var to true
         open = true;
         menu.style.display = 'flex';
         menu.classList.add("fade-in");
         timer = setTimeout(() => {
             menu.classList.remove("fade-in");
-        }, 200);
+        }, 300);
     }
 }
 
+
+// Footer Link Message Function
 function message() {
+
+    // Displays the message with a fade in animation then fades out
     none.style.display = 'flex';
     timer = setTimeout(() => {
         none.classList.add("message-exit");
-    }, 700);
+    }, 900);
     none.classList.remove("message-exit");
     timer = setTimeout(() => {
         none.style.display = 'none';
-    }, 1000);
+    }, 1200);
 
 }
 
+
+// Email Form and Loading Animation Function
 function contact(event) {
+    // Prevents any default action if the event is not handled
     event.preventDefault()
+
+    // Diplays a loading animation 
     const loading = document.querySelector('.modal__overlay--loading');
     const success = document.querySelector('.modal__overlay--success');
     loading.classList += " modal__overlay--visible";
+
+    // Sends the users message and once done, hides the animation and displays
+    // a 'success' overlay or displays an error overlay if the form was not sent
     emailjs
         .sendForm(
             'service_lo59kw2',
@@ -73,19 +93,29 @@ function contact(event) {
     })
 }
 
+
+// Contact Button Menu Function
 function toggleModal() {
+
+    // Hides the menu
     menu.style.display = 'none';
+
+    // Checks if the isModalOpen var is true or not and opens/closes the modal
+    // based on its current state then changes the var
     if (isModalOpen) {
         isModalOpen = false;
         return document.body.classList.remove("modal--open");
+    } else {
+        isModalOpen = true;
+        document.body.classList += " modal--open";
     }
-    isModalOpen = true;
-    document.body.classList += " modal--open";
 }
 
 // INDEX PAGE EVENT LISTENERS
 
 function switchTabs() {
+
+    // Checks if the user has pressed the enter key or not
     searchBar.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
 
@@ -100,6 +130,8 @@ function switchTabs() {
 }
 
 function searchEnter() {
+
+    // Checks if the search button has been clicked
     searchBtn.addEventListener('click', function (event) {
 
         // stores input value in local storage
@@ -112,15 +144,6 @@ function searchEnter() {
 }
 
 // BROWSE PAGE | MOVIE RENDERING AND FILTERING FUNCTIONS
-/*
-function getUserInput() {
-    if (searchTerm) {
-        return searchTerm;
-    } else {
-        return document.querySelector(".header__search").value;
-    }
-}
-*/
 
 const getUserInput = (searchTerm = '') => {
     return searchTerm || document.querySelector(".header__search").value;
@@ -140,6 +163,8 @@ async function movieData() {
 }
 
 function movieHTML(movie) {
+
+
     if (movie.Poster === "N/A") {
         return `<li class="movie">
                     <div class="movie__wrapper">
@@ -215,14 +240,18 @@ async function movieFilter() {
 }
 
 async function renderMovies() {
+
+    // Cancels any previously established timeout
     clearTimeout(timer);
+
 
     let moviesData = await movieData();
     let movieInfo = moviesData || [];
 
+    // Hides "No Results Found." then adds
     results.style.display = 'none';
-    loading.classList.add("loading__visible");
-    loadingAnimation.classList.add("loading__visible");
+    loading.style.display = 'flex';
+    loadingAnimation.style.display = 'flex';
     spinner.style.display = 'flex';
     movieWrapper.style.display = 'none';
 
@@ -231,8 +260,8 @@ async function renderMovies() {
     }
 
     timer = setTimeout(async () => {
-        loading.classList.remove("loading__visible");
-        loadingAnimation.classList.remove("loading__visible");
+        loading.style.display = 'none';
+        loadingAnimation.style.display = 'none';
         spinner.style.display = 'none';
         if (movieInfo) {
             movieWrapper.style.display = 'flex';
@@ -249,8 +278,14 @@ async function renderMovies() {
 // PAGE CHECK & EVENT LISTENERS FOR BOTH PAGES
 
 async function checkPage() {
+
+    // Checks if the ID 'browse' is true or if the ID 'index' is true
     if (browse) {
+
+        // Establishing the users input from the index page search bar
         const searchTerm = localStorage.getItem('searchTerm');
+
+        // Declares the value of the search bar as the users input 'searchTerm'
         const searchField = document.querySelector('.header__search');
         searchField.value = searchTerm;
 
