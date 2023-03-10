@@ -14,7 +14,7 @@ html {
 
 
 body {
-    background-color: #2b2a33;
+    background-color: #25274D;
     height: 100%;
     max-height: 100vh;
     width: 100%;
@@ -35,15 +35,15 @@ h2 {
     font-weight: 900;
     font-size: 32px;
     padding-left: 8px;
-    color: #2b2a33;
+    color: #2E9CCA;
 }
 
 .click {
     cursor: pointer;
 }
 
-.green {
-    color: #4aa584;
+.color {
+    color: #2E9CCA;
 }
 
 .row {
@@ -59,7 +59,6 @@ h2 {
 */
 
 nav {
-    background-color: #2e6853;
     padding: 0;
 }
 
@@ -106,7 +105,7 @@ nav {
 
 .nav__link--anchor {
     font-size: 18px;
-    color: #e8eaed;
+    color: #fff;
     font-weight: 600;
 }
 
@@ -115,7 +114,7 @@ nav {
 }
 
 .link__hover-effect--white:after {
-    background-color: #e8eaed;
+    background-color: #fff;
 }
 
 .link__hover-effect:hover:after {
@@ -126,8 +125,8 @@ nav {
 .link__hover-effect:after {
     content: "";
     position: absolute;
-    bottom: -3px;
-    height: 3px;
+    bottom: -6px;
+    height: 1px;
     right: 0;
     width: 0;
     transition: all 300ms ease;
@@ -138,17 +137,17 @@ nav {
     font-weight: 600;
     padding: 10px 44px;
     border-radius: 999px;
-    border: 1px solid #42414d;
-    color: #e8eaed;
-    background-color: #2b2a33;
+    color: #2E9CCA;
+    background-color: #25274D;
+    border: solid 1px #464866;
     box-shadow: 6px 6px 18px 0 rgb(0, 0, 0, 0.3);
     transition: all 300ms ease;
 }
 
 .btn__hover-effect--color:hover {
-    background-color: #42414d;
-    border: 1px solid #2b2a33;
-    color: #ffffff;
+    background-color: #464866;
+    border: 1px solid #25274D;
+    color: #AAABB8;
 }
 
 /*
@@ -172,13 +171,13 @@ nav {
     font-size: 48px;
     letter-spacing: 2px;
     font-weight: 700;
-    color: #e8eaed;
+    color: #29648A;
 }
 
 .sub__title {
     margin-top: 32px;
     font-size: 28px;
-    color: #e8eaed;
+    color: #fff;
     letter-spacing: 2px;
     font-weight: 800;
 }
@@ -200,41 +199,43 @@ nav {
     font-size: 26px;
     border-radius: 24px;
     box-shadow: 6px 6px 18px 0 rgb(0, 0, 0, 0.3);
-    color: #8a8a8a;
-    background-color: #2b2a33;
-    border: solid 1px #42414d;
+    color: #ffffff;
+    background-color: #25274D;
+    border: solid 1px #464866;
     transition: all 300ms ease;
 }
 
 .header__search:hover {
-    border: solid 1px #2b2a33;
-    background-color: #42414d;
+    border: solid 1px #25274D;
+    background-color: #464866;
 }
 
 .magnifying-glass {
     height: 40px;
     width: 40px;
-    filter: invert(31%) sepia(57%) saturate(365%) hue-rotate(107deg) brightness(97%) contrast(90%);
+    filter: invert(47%) sepia(80%) saturate(455%) hue-rotate(152deg) brightness(97%) contrast(84%);
     transition: all 300ms ease;
 }
 
 .search-btn {
     padding: 16px 60px;
     border-radius: 24px;
-    background-color: #2b2a33;
-    border: 1px solid #42414d;
+    background-color: #25274D;
+    border: solid 1px #464866;
     box-shadow: 6px 6px 18px 0 rgb(0, 0, 0, 0.3);
     transition: all 300ms ease;
 }
 
 .search-btn:hover {
-    background-color: #42414d;
+    background-color: #464866;
+    border: solid 1px #25274D;
 }
 
 
 
 .search-btn:hover .magnifying-glass {
-    filter: invert(52%) sepia(74%) saturate(282%) hue-rotate(107deg) brightness(94%) contrast(86%);
+    transform: scale(1.05);
+    filter: invert(31%) sepia(24%) saturate(1837%) hue-rotate(163deg) brightness(92%) contrast(77%);
 }
 
 .search-btn:hover .header__search {
@@ -332,7 +333,7 @@ nav {
     font-weight: 600;
     font-size: 56px;
     letter-spacing: 3px;
-    color: #e8eaed;
+    color: #fff;
     background-color: transparent;
     border: none;
 }
@@ -497,7 +498,7 @@ nav {
 }
 
 .form__submit {
-    background-color: #4aa584;
+    background-color: #29648A;
     border: 2px solid #4aa584;
     color: white;
     font-weight: 700;
