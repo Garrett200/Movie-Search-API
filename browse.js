@@ -155,7 +155,7 @@ async function movieData() {
         const moviesObj = await moviesData.json();
         const { Search: movieArr } = moviesObj;
         movieInfo = movieArr || [];
-        return movieArr;
+        return movieInfo;
     } catch (error) {
         console.error(`Error fetching movie data: ${error}`);
         return [];

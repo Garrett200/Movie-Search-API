@@ -264,9 +264,7 @@ nav {
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-    border: 1px solid #42414d;
-    background-color: #2b2a33;
-    box-shadow: inset 6px 6px 18px 0 rgb(0, 0, 0, 0.3);
+    background-color: #2b2a33f5;
 }
 
 .fade-in {
