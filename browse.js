@@ -250,6 +250,7 @@ async function renderMovies() {
 
     // Hides "No Results Found." then adds
     results.style.display = 'none';
+    browse.style.border = 'none';
     loading.style.display = 'flex';
     loadingAnimation.style.display = 'flex';
     spinner.style.display = 'flex';
@@ -263,6 +264,7 @@ async function renderMovies() {
         loading.style.display = 'none';
         loadingAnimation.style.display = 'none';
         spinner.style.display = 'none';
+        browse.style.borderTop = '1px solid #AAABB8';
         if (movieInfo) {
             movieWrapper.style.display = 'flex';
         } else if (!getUserInput()) {

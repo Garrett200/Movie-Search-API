@@ -147,7 +147,7 @@ nav {
 .btn__hover-effect--color:hover {
     background-color: #464866;
     border: 1px solid #25274D;
-    color: #AAABB8;
+    color: #fff;
 }
 
 /*
@@ -234,8 +234,7 @@ nav {
 
 
 .search-btn:hover .magnifying-glass {
-    transform: scale(1.05);
-    filter: invert(31%) sepia(24%) saturate(1837%) hue-rotate(163deg) brightness(92%) contrast(77%);
+    filter: invert(100%) sepia(25%) saturate(2004%) hue-rotate(66deg) brightness(127%) contrast(114%);
 }
 
 .search-btn:hover .header__search {
