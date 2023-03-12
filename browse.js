@@ -248,25 +248,33 @@ async function renderMovies() {
     let moviesData = await movieData();
     let movieInfo = moviesData || [];
 
-    // Hides "No Results Found." then adds
+    // Hides everything wether no results to results found then shows the loading animation
     results.style.display = 'none';
     browse.style.border = 'none';
+    movieWrapper.style.display = 'none';
     loading.style.display = 'flex';
     loadingAnimation.style.display = 'flex';
     spinner.style.display = 'flex';
-    movieWrapper.style.display = 'none';
 
+    // If the movieInfo arr is true, the inner html of movieWrapper to changed to the movieInfo arr
+    // and maps the movieHTML function into it.
     if (movieInfo) {
         movieWrapper.innerHTML = movieInfo.map(movieHTML).join('');
     }
 
+    // While everything is still hidden, the loading animation will display for 900ms and then shows the results
     timer = setTimeout(async () => {
+
+        // Hiding the loading animation and displaying the border
         loading.style.display = 'none';
         loadingAnimation.style.display = 'none';
         spinner.style.display = 'none';
         browse.style.borderTop = '1px solid #AAABB8';
+
+        // if movieInfo is true, display it
         if (movieInfo) {
             movieWrapper.style.display = 'flex';
+            // if user Input is false, dont't display the results
         } else if (!getUserInput()) {
             results.style.display = 'none';
         } else {
