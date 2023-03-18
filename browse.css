@@ -529,7 +529,8 @@ nav {
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-    background-color: #2b2a33f5;
+    background-color: #25274D;
+    opacity: 0.95;
 }
 
 .fade-in {
@@ -586,13 +587,13 @@ nav {
 
 .menu__open--image {
     transition: all 300ms ease;
-    filter: invert(93%) sepia(6%) saturate(90%) hue-rotate(177deg) brightness(100%) contrast(93%);
+    filter: invert(57%) sepia(84%) saturate(1163%) hue-rotate(165deg) brightness(85%) contrast(83%);
     height: 100%;
     width: 100%;
 }
 
 .menu__btn:hover .menu__open--image {
-    filter: invert(22%) sepia(15%) saturate(458%) hue-rotate(206deg) brightness(101%) contrast(90%);
+    filter: invert(28%) sepia(96%) saturate(401%) hue-rotate(160deg) brightness(98%) contrast(84%);
 }
 
 .menu__list {
