@@ -447,7 +447,7 @@ nav {
 }
 
 .modal__contact {
-    background-color: #242424;
+    background-color: #25274D;
     color: white;
     transform: translateX(110%);
 }
@@ -473,7 +473,7 @@ nav {
 .input {
     width: 100%;
     height: 40px;
-    background-color: #242424;
+    background-color: #25274D;
     color: #fff;
     outline: none;
     border-bottom: 3px solid #c0c4cc;
@@ -494,12 +494,12 @@ nav {
 }
 
 .input:focus {
-    border-color: #4aa584;
+    border-color: #2E9CCA;
 }
 
 .form__submit {
     background-color: #29648A;
-    border: 2px solid #4aa584;
+    border: 2px solid #29648A;
     color: white;
     font-weight: 700;
     font-size: 20px;
