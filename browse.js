@@ -145,26 +145,34 @@ function searchEnter() {
 
 // BROWSE PAGE | MOVIE RENDERING AND FILTERING FUNCTIONS
 
+// Initalizes the users input as a const and 
+// sets the value to the searchTerm from the Home page or whatever input value is in the header__search element 
 const getUserInput = (searchTerm = '') => {
     return searchTerm || document.querySelector(".header__search").value;
 };
 
+// Movie Data function
 async function movieData() {
     try {
+        // Uses the users inout defined by the getUserInput function to search
+        // in the omdb api and uses json to make it a readable array.
+        // sets the array if there is one yo movieInfo
         const moviesData = await fetch(`https://www.omdbapi.com/?apikey=373b4567&s=${getUserInput()}`);
         const moviesObj = await moviesData.json();
         const { Search: movieArr } = moviesObj;
         movieInfo = movieArr || [];
         return movieInfo;
     } catch (error) {
+        // If unable to reach the omdb api, display an error and return an empty array.
         console.error(`Error fetching movie data: ${error}`);
         return [];
     }
 }
 
+// Movie rendering function
 function movieHTML(movie) {
-
-
+    // If there is no poster for an item in the array it shows as "N/A",
+    // this will display 'no image' 
     if (movie.Poster === "N/A") {
         return `<li class="movie">
                     <div class="movie__wrapper">
@@ -184,6 +192,7 @@ function movieHTML(movie) {
                     </div>
                 </li>`
     } else {
+        // If there is a poster, display the provided poster.
         return `<li class="movie">
                     <div class="movie__wrapper">
                         <img class="movie__img" src="${movie.Poster}">
@@ -201,22 +210,26 @@ function movieHTML(movie) {
     }
 }
 
-
+// For the shows that have two years ex. 2015-2023 this function will seperate the years by the '-' 
 function parseYear(year) {
     return year.indexOf("-") === -1 ? parseInt(year) : parseInt(year.split("-")[0]);
 }
 
+// Sorts the movie array based on the filter option selected
 async function movieFilter() {
+    // Restates the movieInfo data and initalizes the filter option value
     let sortFunction;
     let filter = filters.value;
     let moviesData = await movieData();
     let movieInfo = moviesData;
 
+    // If there is no array, do nothing.
     if (!movieInfo) {
         console.log('Nothing found.')
         return;
     }
 
+    // Sorting the array by alphabetical, type, old to new, and new to old.
     if (filter === 'ALPHABETICAL') {
         sortFunction = (a, b) => a.Title.localeCompare(b.Title);
     } else if (filter === 'OLD_TO_NEW') {
@@ -235,7 +248,11 @@ async function movieFilter() {
         movieInfo = movieInfo.filter(movie => movie.Type === filter.split('_')[1].toLowerCase());
     }
 
+    // sets the movieInfo array to a newly sorted array
     movieInfo = movieInfo.sort(sortFunction);
+
+    // Makes the inner HTML of the movie wrapper to new mapped array
+    // and passes the movieInfo array into the movieHTML function and joins it into a string
     movieWrapper.innerHTML = movieInfo.map(movieHTML).join('');
 }
 
