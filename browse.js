@@ -306,7 +306,7 @@ async function renderMovies() {
 
 async function checkPage() {
 
-    // Checks if the ID 'browse' is true or if the ID 'index' is true
+    // Checks if the ID 'browse' is true or false otherwise moves on to check if Index is true
     if (browse) {
 
         // Establishing the users input from the index page search bar
@@ -316,17 +316,24 @@ async function checkPage() {
         const searchField = document.querySelector('.header__search');
         searchField.value = searchTerm;
 
+        // If there is a searchTerm from the home page, render the movies with that search.
+        // resets the search term to nothing
         if (searchTerm) {
             await renderMovies();
             localStorage.setItem('searchTerm', "");
         }
+
+        // For every key input in the search bar from the user, render movies with that search.
         searchBar.addEventListener('input', async () => {
             await renderMovies();
         });
 
+        // Everytime the filter element is changed, call the movie filter function
         filters.addEventListener('change', function () {
             movieFilter();
         });
+
+        // If index is true, call on the switchTabs and searchEnter event listener functions
     } else if (index) {
         switchTabs();
         searchEnter();
